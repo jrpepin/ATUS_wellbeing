@@ -1,4 +1,4 @@
-cd "D:\Dropbox\Well-being"
+clear
 set more off
 
 use "wellbeing_who", clear
