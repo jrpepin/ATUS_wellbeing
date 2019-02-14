@@ -138,7 +138,7 @@ drop if sex == spsex
 count if actline ==1 // 18,935
 
 // Ages 18-54
-keep if age >=18 & age <54 
+keep if age >=18 & age <=54 
 count if actline ==1 // 12,554
 
 // Well-being w/ spouse or partner
