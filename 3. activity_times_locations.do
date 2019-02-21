@@ -154,5 +154,4 @@ tab tod, gen(tod); //generate dummies 1-5 for time of day variables
 
 
 drop last_act - intod5;
-drop rawbwt_*;
 save tod.dta, replace;

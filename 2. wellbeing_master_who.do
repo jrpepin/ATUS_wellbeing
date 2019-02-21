@@ -1,9 +1,7 @@
 * NOTE: You need to set the Stata working directory to the path
 * where the data file is located.
 
-
-* NOTE: You need to set the Stata working directory to the path
-* where the data file is located.
+cd "C:\Users\Joanna\Dropbox\Repositories\ATUS_Wellbeing"
 
 set more off
 
