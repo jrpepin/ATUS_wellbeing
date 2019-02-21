@@ -1,774 +1,209 @@
 * NOTE: You need to set the Stata working directory to the path
 * where the data file is located.
 
+cd "C:\Users\Joanna\Dropbox\Repositories\ATUS_Wellbeing"
+
 set more off
 
 clear
 quietly infix                      ///
-  byte    rectype       1-1        ///
-  double  caseid        2-15       ///
-  long    year          16-20      ///
-  byte    pernum        21-22      ///
-  int     lineno        23-25      ///
-  int     lineno_cps8   26-28      ///
-  byte    day           29-30      ///
-  double  wt06          31-47      ///
-  int     age           48-50      ///
-  byte    sex           51-52      ///
-  int     race          53-56      ///
-  int     hispan        57-60      ///
-  byte    marst         61-62      ///
-  int     relate        63-65      ///
-  int     educ          66-68      ///
-  int     educyrs       69-71      ///
-  byte    empstat       72-73      ///
-  byte    fullpart      74-75      ///
-  int     uhrsworkt     76-79      ///
-  int     uhrswork1     80-82      ///
-  int     uhrswork2     83-85      ///
-  byte    spousepres    86-87      ///
-  int     spage         88-90      ///
-  int     spsex         91-93      ///
-  byte    spempnot      94-95      ///
-  byte    spempstat     96-97      ///
-  int     spusualhrs    98-100     ///
-  byte    pernum_sp     101-102    ///
-  int     lineno_sp     103-105    ///
-  int     age_sp        106-108    ///
-  byte    sex_sp        109-110    ///
-  int     race_sp       111-114    ///
-  int     hispan_sp     115-118    ///
-  int     educ_sp       119-121    ///
-  int     educyrs_sp    122-124    ///
-  byte    empstat_sp    125-126    ///
-  int     uhrsworkt_sp  127-130    ///
-  long    activity      131-136    ///
-  int     where         137-140    ///
-  int     duration      141-144    ///
-  byte    actline       145-146    ///
-  str     start         147-154    ///
-  str     stop          155-162    ///
-  byte    scpain        163-164    ///
-  byte    schappy       165-166    ///
-  byte    scsad         167-168    ///
-  byte    sctired       169-170    ///
-  byte    scstress      171-172    ///
-  byte    interact      173-174    ///
-  byte    meaning       175-176    ///
-  byte    osad          177-178    ///
-  byte    ohappy        179-180    ///
-  byte    opain         181-182    ///
-  byte    otired        183-184    ///
-  byte    ostress       185-186    ///
-  byte    wbelig        187-187    ///
-  double  awbwt         188-202    ///
-  double  rawbwt_1      203-218    ///
-  double  rawbwt_2      219-234    ///
-  double  rawbwt_3      235-250    ///
-  double  rawbwt_4      251-266    ///
-  double  rawbwt_5      267-282    ///
-  double  rawbwt_6      283-298    ///
-  double  rawbwt_7      299-314    ///
-  double  rawbwt_8      315-330    ///
-  double  rawbwt_9      331-346    ///
-  double  rawbwt_10     347-362    ///
-  double  rawbwt_11     363-378    ///
-  double  rawbwt_12     379-394    ///
-  double  rawbwt_13     395-410    ///
-  double  rawbwt_14     411-426    ///
-  double  rawbwt_15     427-442    ///
-  double  rawbwt_16     443-458    ///
-  double  rawbwt_17     459-474    ///
-  double  rawbwt_18     475-490    ///
-  double  rawbwt_19     491-506    ///
-  double  rawbwt_20     507-522    ///
-  double  rawbwt_21     523-538    ///
-  double  rawbwt_22     539-554    ///
-  double  rawbwt_23     555-570    ///
-  double  rawbwt_24     571-586    ///
-  double  rawbwt_25     587-602    ///
-  double  rawbwt_26     603-618    ///
-  double  rawbwt_27     619-634    ///
-  double  rawbwt_28     635-650    ///
-  double  rawbwt_29     651-666    ///
-  double  rawbwt_30     667-682    ///
-  double  rawbwt_31     683-698    ///
-  double  rawbwt_32     699-714    ///
-  double  rawbwt_33     715-730    ///
-  double  rawbwt_34     731-746    ///
-  double  rawbwt_35     747-762    ///
-  double  rawbwt_36     763-778    ///
-  double  rawbwt_37     779-794    ///
-  double  rawbwt_38     795-810    ///
-  double  rawbwt_39     811-826    ///
-  double  rawbwt_40     827-842    ///
-  double  rawbwt_41     843-858    ///
-  double  rawbwt_42     859-874    ///
-  double  rawbwt_43     875-890    ///
-  double  rawbwt_44     891-906    ///
-  double  rawbwt_45     907-922    ///
-  double  rawbwt_46     923-938    ///
-  double  rawbwt_47     939-954    ///
-  double  rawbwt_48     955-970    ///
-  double  rawbwt_49     971-986    ///
-  double  rawbwt_50     987-1002   ///
-  double  rawbwt_51     1003-1018  ///
-  double  rawbwt_52     1019-1034  ///
-  double  rawbwt_53     1035-1050  ///
-  double  rawbwt_54     1051-1066  ///
-  double  rawbwt_55     1067-1082  ///
-  double  rawbwt_56     1083-1098  ///
-  double  rawbwt_57     1099-1114  ///
-  double  rawbwt_58     1115-1130  ///
-  double  rawbwt_59     1131-1146  ///
-  double  rawbwt_60     1147-1162  ///
-  double  rawbwt_61     1163-1178  ///
-  double  rawbwt_62     1179-1194  ///
-  double  rawbwt_63     1195-1210  ///
-  double  rawbwt_64     1211-1226  ///
-  double  rawbwt_65     1227-1242  ///
-  double  rawbwt_66     1243-1258  ///
-  double  rawbwt_67     1259-1274  ///
-  double  rawbwt_68     1275-1290  ///
-  double  rawbwt_69     1291-1306  ///
-  double  rawbwt_70     1307-1322  ///
-  double  rawbwt_71     1323-1338  ///
-  double  rawbwt_72     1339-1354  ///
-  double  rawbwt_73     1355-1370  ///
-  double  rawbwt_74     1371-1386  ///
-  double  rawbwt_75     1387-1402  ///
-  double  rawbwt_76     1403-1418  ///
-  double  rawbwt_77     1419-1434  ///
-  double  rawbwt_78     1435-1450  ///
-  double  rawbwt_79     1451-1466  ///
-  double  rawbwt_80     1467-1482  ///
-  double  rawbwt_81     1483-1498  ///
-  double  rawbwt_82     1499-1514  ///
-  double  rawbwt_83     1515-1530  ///
-  double  rawbwt_84     1531-1546  ///
-  double  rawbwt_85     1547-1562  ///
-  double  rawbwt_86     1563-1578  ///
-  double  rawbwt_87     1579-1594  ///
-  double  rawbwt_88     1595-1610  ///
-  double  rawbwt_89     1611-1626  ///
-  double  rawbwt_90     1627-1642  ///
-  double  rawbwt_91     1643-1658  ///
-  double  rawbwt_92     1659-1674  ///
-  double  rawbwt_93     1675-1690  ///
-  double  rawbwt_94     1691-1706  ///
-  double  rawbwt_95     1707-1722  ///
-  double  rawbwt_96     1723-1738  ///
-  double  rawbwt_97     1739-1754  ///
-  double  rawbwt_98     1755-1770  ///
-  double  rawbwt_99     1771-1786  ///
-  double  rawbwt_100    1787-1802  ///
-  double  rawbwt_101    1803-1818  ///
-  double  rawbwt_102    1819-1834  ///
-  double  rawbwt_103    1835-1850  ///
-  double  rawbwt_104    1851-1866  ///
-  double  rawbwt_105    1867-1882  ///
-  double  rawbwt_106    1883-1898  ///
-  double  rawbwt_107    1899-1914  ///
-  double  rawbwt_108    1915-1930  ///
-  double  rawbwt_109    1931-1946  ///
-  double  rawbwt_110    1947-1962  ///
-  double  rawbwt_111    1963-1978  ///
-  double  rawbwt_112    1979-1994  ///
-  double  rawbwt_113    1995-2010  ///
-  double  rawbwt_114    2011-2026  ///
-  double  rawbwt_115    2027-2042  ///
-  double  rawbwt_116    2043-2058  ///
-  double  rawbwt_117    2059-2074  ///
-  double  rawbwt_118    2075-2090  ///
-  double  rawbwt_119    2091-2106  ///
-  double  rawbwt_120    2107-2122  ///
-  double  rawbwt_121    2123-2138  ///
-  double  rawbwt_122    2139-2154  ///
-  double  rawbwt_123    2155-2170  ///
-  double  rawbwt_124    2171-2186  ///
-  double  rawbwt_125    2187-2202  ///
-  double  rawbwt_126    2203-2218  ///
-  double  rawbwt_127    2219-2234  ///
-  double  rawbwt_128    2235-2250  ///
-  double  rawbwt_129    2251-2266  ///
-  double  rawbwt_130    2267-2282  ///
-  double  rawbwt_131    2283-2298  ///
-  double  rawbwt_132    2299-2314  ///
-  double  rawbwt_133    2315-2330  ///
-  double  rawbwt_134    2331-2346  ///
-  double  rawbwt_135    2347-2362  ///
-  double  rawbwt_136    2363-2378  ///
-  double  rawbwt_137    2379-2394  ///
-  double  rawbwt_138    2395-2410  ///
-  double  rawbwt_139    2411-2426  ///
-  double  rawbwt_140    2427-2442  ///
-  double  rawbwt_141    2443-2458  ///
-  double  rawbwt_142    2459-2474  ///
-  double  rawbwt_143    2475-2490  ///
-  double  rawbwt_144    2491-2506  ///
-  double  rawbwt_145    2507-2522  ///
-  double  rawbwt_146    2523-2538  ///
-  double  rawbwt_147    2539-2554  ///
-  double  rawbwt_148    2555-2570  ///
-  double  rawbwt_149    2571-2586  ///
-  double  rawbwt_150    2587-2602  ///
-  double  rawbwt_151    2603-2618  ///
-  double  rawbwt_152    2619-2634  ///
-  double  rawbwt_153    2635-2650  ///
-  double  rawbwt_154    2651-2666  ///
-  double  rawbwt_155    2667-2682  ///
-  double  rawbwt_156    2683-2698  ///
-  double  rawbwt_157    2699-2714  ///
-  double  rawbwt_158    2715-2730  ///
-  double  rawbwt_159    2731-2746  ///
-  double  rawbwt_160    2747-2762  ///
-  byte    rawbwt        2763-2763  ///
-  using `"atus_00020.dat"'
+  byte    rectype         1-1      ///
+  long    year            2-6      ///
+  double  caseid          7-20     ///
+  int     famincome       21-23    ///
+  byte    hh_numkids      24-25    ///
+  int     ageychild_cps8  26-28    ///
+  byte    pernum          29-30    ///
+  int     lineno          31-33    ///
+  int     lineno_cps8     34-36    ///
+  byte    day             37-38    ///
+  double  wt06            39-55    ///
+  int     age             56-58    ///
+  byte    sex             59-60    ///
+  int     race            61-64    ///
+  int     hispan          65-68    ///
+  byte    marst           69-70    ///
+  int     relate          71-73    ///
+  int     educ            74-76    ///
+  int     educyrs         77-79    ///
+  byte    schlcoll        80-81    ///
+  byte    empstat         82-83    ///
+  byte    fullpart        84-85    ///
+  int     uhrsworkt       86-89    ///
+  int     uhrswork1       90-92    ///
+  int     uhrswork2       93-95    ///
+  byte    spousepres      96-97    ///
+  int     spage           98-100   ///
+  int     spsex           101-103  ///
+  byte    spempnot        104-105  ///
+  byte    spempstat       106-107  ///
+  int     spusualhrs      108-110  ///
+  byte    hh_numownkids   111-112  ///
+  byte    kidund1         113-114  ///
+  byte    kid1to2         115-116  ///
+  int     age_sp          117-119  ///
+  byte    sex_sp          120-121  ///
+  int     race_sp         122-125  ///
+  int     hispan_sp       126-129  ///
+  int     educ_sp         130-132  ///
+  int     educyrs_sp      133-135  ///
+  byte    empstat_sp      136-137  ///
+  int     uhrsworkt_sp    138-141  ///
+  byte    actline         142-143  ///
+  long    activity        144-149  ///
+  int     where           150-153  ///
+  int     duration        154-157  ///
+  str     start           158-165  ///
+  str     stop            166-173  ///
+  byte    scpain          174-175  ///
+  byte    schappy         176-177  ///
+  byte    scsad           178-179  ///
+  byte    sctired         180-181  ///
+  byte    scstress        182-183  ///
+  byte    interact        184-185  ///
+  byte    meaning         186-187  ///
+  byte    osad            188-189  ///
+  byte    ohappy          190-191  ///
+  byte    opain           192-193  ///
+  byte    otired          194-195  ///
+  byte    ostress         196-197  ///
+  byte    wbelig          198-198  ///
+  double  awbwt           199-213  ///
+  using `"atus_00027.dat"'
 
-replace awbwt        = awbwt        / 1000000
-replace rawbwt_1     = rawbwt_1     / 1000000
-replace rawbwt_2     = rawbwt_2     / 1000000
-replace rawbwt_3     = rawbwt_3     / 1000000
-replace rawbwt_4     = rawbwt_4     / 1000000
-replace rawbwt_5     = rawbwt_5     / 1000000
-replace rawbwt_6     = rawbwt_6     / 1000000
-replace rawbwt_7     = rawbwt_7     / 1000000
-replace rawbwt_8     = rawbwt_8     / 1000000
-replace rawbwt_9     = rawbwt_9     / 1000000
-replace rawbwt_10    = rawbwt_10    / 1000000
-replace rawbwt_11    = rawbwt_11    / 1000000
-replace rawbwt_12    = rawbwt_12    / 1000000
-replace rawbwt_13    = rawbwt_13    / 1000000
-replace rawbwt_14    = rawbwt_14    / 1000000
-replace rawbwt_15    = rawbwt_15    / 1000000
-replace rawbwt_16    = rawbwt_16    / 1000000
-replace rawbwt_17    = rawbwt_17    / 1000000
-replace rawbwt_18    = rawbwt_18    / 1000000
-replace rawbwt_19    = rawbwt_19    / 1000000
-replace rawbwt_20    = rawbwt_20    / 1000000
-replace rawbwt_21    = rawbwt_21    / 1000000
-replace rawbwt_22    = rawbwt_22    / 1000000
-replace rawbwt_23    = rawbwt_23    / 1000000
-replace rawbwt_24    = rawbwt_24    / 1000000
-replace rawbwt_25    = rawbwt_25    / 1000000
-replace rawbwt_26    = rawbwt_26    / 1000000
-replace rawbwt_27    = rawbwt_27    / 1000000
-replace rawbwt_28    = rawbwt_28    / 1000000
-replace rawbwt_29    = rawbwt_29    / 1000000
-replace rawbwt_30    = rawbwt_30    / 1000000
-replace rawbwt_31    = rawbwt_31    / 1000000
-replace rawbwt_32    = rawbwt_32    / 1000000
-replace rawbwt_33    = rawbwt_33    / 1000000
-replace rawbwt_34    = rawbwt_34    / 1000000
-replace rawbwt_35    = rawbwt_35    / 1000000
-replace rawbwt_36    = rawbwt_36    / 1000000
-replace rawbwt_37    = rawbwt_37    / 1000000
-replace rawbwt_38    = rawbwt_38    / 1000000
-replace rawbwt_39    = rawbwt_39    / 1000000
-replace rawbwt_40    = rawbwt_40    / 1000000
-replace rawbwt_41    = rawbwt_41    / 1000000
-replace rawbwt_42    = rawbwt_42    / 1000000
-replace rawbwt_43    = rawbwt_43    / 1000000
-replace rawbwt_44    = rawbwt_44    / 1000000
-replace rawbwt_45    = rawbwt_45    / 1000000
-replace rawbwt_46    = rawbwt_46    / 1000000
-replace rawbwt_47    = rawbwt_47    / 1000000
-replace rawbwt_48    = rawbwt_48    / 1000000
-replace rawbwt_49    = rawbwt_49    / 1000000
-replace rawbwt_50    = rawbwt_50    / 1000000
-replace rawbwt_51    = rawbwt_51    / 1000000
-replace rawbwt_52    = rawbwt_52    / 1000000
-replace rawbwt_53    = rawbwt_53    / 1000000
-replace rawbwt_54    = rawbwt_54    / 1000000
-replace rawbwt_55    = rawbwt_55    / 1000000
-replace rawbwt_56    = rawbwt_56    / 1000000
-replace rawbwt_57    = rawbwt_57    / 1000000
-replace rawbwt_58    = rawbwt_58    / 1000000
-replace rawbwt_59    = rawbwt_59    / 1000000
-replace rawbwt_60    = rawbwt_60    / 1000000
-replace rawbwt_61    = rawbwt_61    / 1000000
-replace rawbwt_62    = rawbwt_62    / 1000000
-replace rawbwt_63    = rawbwt_63    / 1000000
-replace rawbwt_64    = rawbwt_64    / 1000000
-replace rawbwt_65    = rawbwt_65    / 1000000
-replace rawbwt_66    = rawbwt_66    / 1000000
-replace rawbwt_67    = rawbwt_67    / 1000000
-replace rawbwt_68    = rawbwt_68    / 1000000
-replace rawbwt_69    = rawbwt_69    / 1000000
-replace rawbwt_70    = rawbwt_70    / 1000000
-replace rawbwt_71    = rawbwt_71    / 1000000
-replace rawbwt_72    = rawbwt_72    / 1000000
-replace rawbwt_73    = rawbwt_73    / 1000000
-replace rawbwt_74    = rawbwt_74    / 1000000
-replace rawbwt_75    = rawbwt_75    / 1000000
-replace rawbwt_76    = rawbwt_76    / 1000000
-replace rawbwt_77    = rawbwt_77    / 1000000
-replace rawbwt_78    = rawbwt_78    / 1000000
-replace rawbwt_79    = rawbwt_79    / 1000000
-replace rawbwt_80    = rawbwt_80    / 1000000
-replace rawbwt_81    = rawbwt_81    / 1000000
-replace rawbwt_82    = rawbwt_82    / 1000000
-replace rawbwt_83    = rawbwt_83    / 1000000
-replace rawbwt_84    = rawbwt_84    / 1000000
-replace rawbwt_85    = rawbwt_85    / 1000000
-replace rawbwt_86    = rawbwt_86    / 1000000
-replace rawbwt_87    = rawbwt_87    / 1000000
-replace rawbwt_88    = rawbwt_88    / 1000000
-replace rawbwt_89    = rawbwt_89    / 1000000
-replace rawbwt_90    = rawbwt_90    / 1000000
-replace rawbwt_91    = rawbwt_91    / 1000000
-replace rawbwt_92    = rawbwt_92    / 1000000
-replace rawbwt_93    = rawbwt_93    / 1000000
-replace rawbwt_94    = rawbwt_94    / 1000000
-replace rawbwt_95    = rawbwt_95    / 1000000
-replace rawbwt_96    = rawbwt_96    / 1000000
-replace rawbwt_97    = rawbwt_97    / 1000000
-replace rawbwt_98    = rawbwt_98    / 1000000
-replace rawbwt_99    = rawbwt_99    / 1000000
-replace rawbwt_100   = rawbwt_100   / 1000000
-replace rawbwt_101   = rawbwt_101   / 1000000
-replace rawbwt_102   = rawbwt_102   / 1000000
-replace rawbwt_103   = rawbwt_103   / 1000000
-replace rawbwt_104   = rawbwt_104   / 1000000
-replace rawbwt_105   = rawbwt_105   / 1000000
-replace rawbwt_106   = rawbwt_106   / 1000000
-replace rawbwt_107   = rawbwt_107   / 1000000
-replace rawbwt_108   = rawbwt_108   / 1000000
-replace rawbwt_109   = rawbwt_109   / 1000000
-replace rawbwt_110   = rawbwt_110   / 1000000
-replace rawbwt_111   = rawbwt_111   / 1000000
-replace rawbwt_112   = rawbwt_112   / 1000000
-replace rawbwt_113   = rawbwt_113   / 1000000
-replace rawbwt_114   = rawbwt_114   / 1000000
-replace rawbwt_115   = rawbwt_115   / 1000000
-replace rawbwt_116   = rawbwt_116   / 1000000
-replace rawbwt_117   = rawbwt_117   / 1000000
-replace rawbwt_118   = rawbwt_118   / 1000000
-replace rawbwt_119   = rawbwt_119   / 1000000
-replace rawbwt_120   = rawbwt_120   / 1000000
-replace rawbwt_121   = rawbwt_121   / 1000000
-replace rawbwt_122   = rawbwt_122   / 1000000
-replace rawbwt_123   = rawbwt_123   / 1000000
-replace rawbwt_124   = rawbwt_124   / 1000000
-replace rawbwt_125   = rawbwt_125   / 1000000
-replace rawbwt_126   = rawbwt_126   / 1000000
-replace rawbwt_127   = rawbwt_127   / 1000000
-replace rawbwt_128   = rawbwt_128   / 1000000
-replace rawbwt_129   = rawbwt_129   / 1000000
-replace rawbwt_130   = rawbwt_130   / 1000000
-replace rawbwt_131   = rawbwt_131   / 1000000
-replace rawbwt_132   = rawbwt_132   / 1000000
-replace rawbwt_133   = rawbwt_133   / 1000000
-replace rawbwt_134   = rawbwt_134   / 1000000
-replace rawbwt_135   = rawbwt_135   / 1000000
-replace rawbwt_136   = rawbwt_136   / 1000000
-replace rawbwt_137   = rawbwt_137   / 1000000
-replace rawbwt_138   = rawbwt_138   / 1000000
-replace rawbwt_139   = rawbwt_139   / 1000000
-replace rawbwt_140   = rawbwt_140   / 1000000
-replace rawbwt_141   = rawbwt_141   / 1000000
-replace rawbwt_142   = rawbwt_142   / 1000000
-replace rawbwt_143   = rawbwt_143   / 1000000
-replace rawbwt_144   = rawbwt_144   / 1000000
-replace rawbwt_145   = rawbwt_145   / 1000000
-replace rawbwt_146   = rawbwt_146   / 1000000
-replace rawbwt_147   = rawbwt_147   / 1000000
-replace rawbwt_148   = rawbwt_148   / 1000000
-replace rawbwt_149   = rawbwt_149   / 1000000
-replace rawbwt_150   = rawbwt_150   / 1000000
-replace rawbwt_151   = rawbwt_151   / 1000000
-replace rawbwt_152   = rawbwt_152   / 1000000
-replace rawbwt_153   = rawbwt_153   / 1000000
-replace rawbwt_154   = rawbwt_154   / 1000000
-replace rawbwt_155   = rawbwt_155   / 1000000
-replace rawbwt_156   = rawbwt_156   / 1000000
-replace rawbwt_157   = rawbwt_157   / 1000000
-replace rawbwt_158   = rawbwt_158   / 1000000
-replace rawbwt_159   = rawbwt_159   / 1000000
-replace rawbwt_160   = rawbwt_160   / 1000000
+replace awbwt          = awbwt          / 1000000
 
-format caseid       %14.0f
-format wt06         %17.0f
-format awbwt        %15.6f
-format rawbwt_1     %16.6f
-format rawbwt_2     %16.6f
-format rawbwt_3     %16.6f
-format rawbwt_4     %16.6f
-format rawbwt_5     %16.6f
-format rawbwt_6     %16.6f
-format rawbwt_7     %16.6f
-format rawbwt_8     %16.6f
-format rawbwt_9     %16.6f
-format rawbwt_10    %16.6f
-format rawbwt_11    %16.6f
-format rawbwt_12    %16.6f
-format rawbwt_13    %16.6f
-format rawbwt_14    %16.6f
-format rawbwt_15    %16.6f
-format rawbwt_16    %16.6f
-format rawbwt_17    %16.6f
-format rawbwt_18    %16.6f
-format rawbwt_19    %16.6f
-format rawbwt_20    %16.6f
-format rawbwt_21    %16.6f
-format rawbwt_22    %16.6f
-format rawbwt_23    %16.6f
-format rawbwt_24    %16.6f
-format rawbwt_25    %16.6f
-format rawbwt_26    %16.6f
-format rawbwt_27    %16.6f
-format rawbwt_28    %16.6f
-format rawbwt_29    %16.6f
-format rawbwt_30    %16.6f
-format rawbwt_31    %16.6f
-format rawbwt_32    %16.6f
-format rawbwt_33    %16.6f
-format rawbwt_34    %16.6f
-format rawbwt_35    %16.6f
-format rawbwt_36    %16.6f
-format rawbwt_37    %16.6f
-format rawbwt_38    %16.6f
-format rawbwt_39    %16.6f
-format rawbwt_40    %16.6f
-format rawbwt_41    %16.6f
-format rawbwt_42    %16.6f
-format rawbwt_43    %16.6f
-format rawbwt_44    %16.6f
-format rawbwt_45    %16.6f
-format rawbwt_46    %16.6f
-format rawbwt_47    %16.6f
-format rawbwt_48    %16.6f
-format rawbwt_49    %16.6f
-format rawbwt_50    %16.6f
-format rawbwt_51    %16.6f
-format rawbwt_52    %16.6f
-format rawbwt_53    %16.6f
-format rawbwt_54    %16.6f
-format rawbwt_55    %16.6f
-format rawbwt_56    %16.6f
-format rawbwt_57    %16.6f
-format rawbwt_58    %16.6f
-format rawbwt_59    %16.6f
-format rawbwt_60    %16.6f
-format rawbwt_61    %16.6f
-format rawbwt_62    %16.6f
-format rawbwt_63    %16.6f
-format rawbwt_64    %16.6f
-format rawbwt_65    %16.6f
-format rawbwt_66    %16.6f
-format rawbwt_67    %16.6f
-format rawbwt_68    %16.6f
-format rawbwt_69    %16.6f
-format rawbwt_70    %16.6f
-format rawbwt_71    %16.6f
-format rawbwt_72    %16.6f
-format rawbwt_73    %16.6f
-format rawbwt_74    %16.6f
-format rawbwt_75    %16.6f
-format rawbwt_76    %16.6f
-format rawbwt_77    %16.6f
-format rawbwt_78    %16.6f
-format rawbwt_79    %16.6f
-format rawbwt_80    %16.6f
-format rawbwt_81    %16.6f
-format rawbwt_82    %16.6f
-format rawbwt_83    %16.6f
-format rawbwt_84    %16.6f
-format rawbwt_85    %16.6f
-format rawbwt_86    %16.6f
-format rawbwt_87    %16.6f
-format rawbwt_88    %16.6f
-format rawbwt_89    %16.6f
-format rawbwt_90    %16.6f
-format rawbwt_91    %16.6f
-format rawbwt_92    %16.6f
-format rawbwt_93    %16.6f
-format rawbwt_94    %16.6f
-format rawbwt_95    %16.6f
-format rawbwt_96    %16.6f
-format rawbwt_97    %16.6f
-format rawbwt_98    %16.6f
-format rawbwt_99    %16.6f
-format rawbwt_100   %16.6f
-format rawbwt_101   %16.6f
-format rawbwt_102   %16.6f
-format rawbwt_103   %16.6f
-format rawbwt_104   %16.6f
-format rawbwt_105   %16.6f
-format rawbwt_106   %16.6f
-format rawbwt_107   %16.6f
-format rawbwt_108   %16.6f
-format rawbwt_109   %16.6f
-format rawbwt_110   %16.6f
-format rawbwt_111   %16.6f
-format rawbwt_112   %16.6f
-format rawbwt_113   %16.6f
-format rawbwt_114   %16.6f
-format rawbwt_115   %16.6f
-format rawbwt_116   %16.6f
-format rawbwt_117   %16.6f
-format rawbwt_118   %16.6f
-format rawbwt_119   %16.6f
-format rawbwt_120   %16.6f
-format rawbwt_121   %16.6f
-format rawbwt_122   %16.6f
-format rawbwt_123   %16.6f
-format rawbwt_124   %16.6f
-format rawbwt_125   %16.6f
-format rawbwt_126   %16.6f
-format rawbwt_127   %16.6f
-format rawbwt_128   %16.6f
-format rawbwt_129   %16.6f
-format rawbwt_130   %16.6f
-format rawbwt_131   %16.6f
-format rawbwt_132   %16.6f
-format rawbwt_133   %16.6f
-format rawbwt_134   %16.6f
-format rawbwt_135   %16.6f
-format rawbwt_136   %16.6f
-format rawbwt_137   %16.6f
-format rawbwt_138   %16.6f
-format rawbwt_139   %16.6f
-format rawbwt_140   %16.6f
-format rawbwt_141   %16.6f
-format rawbwt_142   %16.6f
-format rawbwt_143   %16.6f
-format rawbwt_144   %16.6f
-format rawbwt_145   %16.6f
-format rawbwt_146   %16.6f
-format rawbwt_147   %16.6f
-format rawbwt_148   %16.6f
-format rawbwt_149   %16.6f
-format rawbwt_150   %16.6f
-format rawbwt_151   %16.6f
-format rawbwt_152   %16.6f
-format rawbwt_153   %16.6f
-format rawbwt_154   %16.6f
-format rawbwt_155   %16.6f
-format rawbwt_156   %16.6f
-format rawbwt_157   %16.6f
-format rawbwt_158   %16.6f
-format rawbwt_159   %16.6f
-format rawbwt_160   %16.6f
+format caseid         %14.0g
+format wt06           %17.0g
+format awbwt          %15.6f
 
-label var rectype      `"Record Type"'
-label var caseid       `"ATUS Case ID"'
-label var year         `"Survey year"'
-label var pernum       `"Person number (general)"'
-label var lineno       `"Person line number"'
-label var lineno_cps8  `"Person line number (CPS)"'
-label var day          `"ATUS interview day of the week"'
-label var wt06         `"Person weight, 2006 methodology"'
-label var age          `"Age"'
-label var sex          `"Sex"'
-label var race         `"Race"'
-label var hispan       `"Hispanic origin"'
-label var marst        `"Marital status"'
-label var relate       `"Relationship to ATUS respondent"'
-label var educ         `"Highest level of school completed"'
-label var educyrs      `"Years of education"'
-label var empstat      `"Labor force status"'
-label var fullpart     `"Full time/part time employment status"'
-label var uhrsworkt    `"Hours usually worked per week"'
-label var uhrswork1    `"Hours usually worked per week at main job"'
-label var uhrswork2    `"Hours usually worked per week at other jobs"'
-label var spousepres   `"Spouse or unmarried partner in household"'
-label var spage        `"Age (spouse or partner)"'
-label var spsex        `"Sex of respondent's spouse or unmarried partner"'
-label var spempnot     `"Employed (spouse or partner)"'
-label var spempstat    `"Employment status (spouse or partner)"'
-label var spusualhrs   `"Usual work hours (spouse or partner)"'
-label var pernum_sp    `"Person number (general) [of spouse]"'
-label var lineno_sp    `"Person line number [of spouse]"'
-label var age_sp       `"Age [of spouse]"'
-label var sex_sp       `"Sex [of spouse]"'
-label var race_sp      `"Race [of spouse]"'
-label var hispan_sp    `"Hispanic origin [of spouse]"'
-label var educ_sp      `"Highest level of school completed [of spouse]"'
-label var educyrs_sp   `"Years of education [of spouse]"'
-label var empstat_sp   `"Labor force status [of spouse]"'
-label var uhrsworkt_sp `"Hours usually worked per week [of spouse]"'
-label var activity     `"Activity"'
-label var where        `"Location of activity"'
-label var duration     `"Duration of activity"'
-label var actline      `"Activity line number"'
-label var start        `"Activity start time"'
-label var stop         `"Activity stop time"'
-label var scpain       `"Pain scale"'
-label var schappy      `"Happiness scale"'
-label var scsad        `"Sadness scale"'
-label var sctired      `"Fatigue scale"'
-label var scstress     `"Stress scale"'
-label var interact     `"Interacting during activity"'
-label var meaning      `"Meaningfulness scale"'
-label var osad         `"Order of SCSAD"'
-label var ohappy       `"Order of SCHAPPY"'
-label var opain        `"Order of SCPAIN"'
-label var otired       `"Order of SCTIRED"'
-label var ostress      `"Order of SCSTRESS"'
-label var wbelig       `"Activity eligible for well-being module selection"'
-label var awbwt        `"Well-being Module final statistical weight, activity-level"'
-label var rawbwt_1     `"Replicate weight 1, well-being module activity-level weight"'
-label var rawbwt_2     `"Replicate weight 2, well-being module activity-level weight"'
-label var rawbwt_3     `"Replicate weight 3, well-being module activity-level weight"'
-label var rawbwt_4     `"Replicate weight 4, well-being module activity-level weight"'
-label var rawbwt_5     `"Replicate weight 5, well-being module activity-level weight"'
-label var rawbwt_6     `"Replicate weight 6, well-being module activity-level weight"'
-label var rawbwt_7     `"Replicate weight 7, well-being module activity-level weight"'
-label var rawbwt_8     `"Replicate weight 8, well-being module activity-level weight"'
-label var rawbwt_9     `"Replicate weight 9, well-being module activity-level weight"'
-label var rawbwt_10    `"Replicate weight 10, well-being module activity-level weight"'
-label var rawbwt_11    `"Replicate weight 11, well-being module activity-level weight"'
-label var rawbwt_12    `"Replicate weight 12, well-being module activity-level weight"'
-label var rawbwt_13    `"Replicate weight 13, well-being module activity-level weight"'
-label var rawbwt_14    `"Replicate weight 14, well-being module activity-level weight"'
-label var rawbwt_15    `"Replicate weight 15, well-being module activity-level weight"'
-label var rawbwt_16    `"Replicate weight 16, well-being module activity-level weight"'
-label var rawbwt_17    `"Replicate weight 17, well-being module activity-level weight"'
-label var rawbwt_18    `"Replicate weight 18, well-being module activity-level weight"'
-label var rawbwt_19    `"Replicate weight 19, well-being module activity-level weight"'
-label var rawbwt_20    `"Replicate weight 20, well-being module activity-level weight"'
-label var rawbwt_21    `"Replicate weight 21, well-being module activity-level weight"'
-label var rawbwt_22    `"Replicate weight 22, well-being module activity-level weight"'
-label var rawbwt_23    `"Replicate weight 23, well-being module activity-level weight"'
-label var rawbwt_24    `"Replicate weight 24, well-being module activity-level weight"'
-label var rawbwt_25    `"Replicate weight 25, well-being module activity-level weight"'
-label var rawbwt_26    `"Replicate weight 26, well-being module activity-level weight"'
-label var rawbwt_27    `"Replicate weight 27, well-being module activity-level weight"'
-label var rawbwt_28    `"Replicate weight 28, well-being module activity-level weight"'
-label var rawbwt_29    `"Replicate weight 29, well-being module activity-level weight"'
-label var rawbwt_30    `"Replicate weight 30, well-being module activity-level weight"'
-label var rawbwt_31    `"Replicate weight 31, well-being module activity-level weight"'
-label var rawbwt_32    `"Replicate weight 32, well-being module activity-level weight"'
-label var rawbwt_33    `"Replicate weight 33, well-being module activity-level weight"'
-label var rawbwt_34    `"Replicate weight 34, well-being module activity-level weight"'
-label var rawbwt_35    `"Replicate weight 35, well-being module activity-level weight"'
-label var rawbwt_36    `"Replicate weight 36, well-being module activity-level weight"'
-label var rawbwt_37    `"Replicate weight 37, well-being module activity-level weight"'
-label var rawbwt_38    `"Replicate weight 38, well-being module activity-level weight"'
-label var rawbwt_39    `"Replicate weight 39, well-being module activity-level weight"'
-label var rawbwt_40    `"Replicate weight 40, well-being module activity-level weight"'
-label var rawbwt_41    `"Replicate weight 41, well-being module activity-level weight"'
-label var rawbwt_42    `"Replicate weight 42, well-being module activity-level weight"'
-label var rawbwt_43    `"Replicate weight 43, well-being module activity-level weight"'
-label var rawbwt_44    `"Replicate weight 44, well-being module activity-level weight"'
-label var rawbwt_45    `"Replicate weight 45, well-being module activity-level weight"'
-label var rawbwt_46    `"Replicate weight 46, well-being module activity-level weight"'
-label var rawbwt_47    `"Replicate weight 47, well-being module activity-level weight"'
-label var rawbwt_48    `"Replicate weight 48, well-being module activity-level weight"'
-label var rawbwt_49    `"Replicate weight 49, well-being module activity-level weight"'
-label var rawbwt_50    `"Replicate weight 50, well-being module activity-level weight"'
-label var rawbwt_51    `"Replicate weight 51, well-being module activity-level weight"'
-label var rawbwt_52    `"Replicate weight 52, well-being module activity-level weight"'
-label var rawbwt_53    `"Replicate weight 53, well-being module activity-level weight"'
-label var rawbwt_54    `"Replicate weight 54, well-being module activity-level weight"'
-label var rawbwt_55    `"Replicate weight 55, well-being module activity-level weight"'
-label var rawbwt_56    `"Replicate weight 56, well-being module activity-level weight"'
-label var rawbwt_57    `"Replicate weight 57, well-being module activity-level weight"'
-label var rawbwt_58    `"Replicate weight 58, well-being module activity-level weight"'
-label var rawbwt_59    `"Replicate weight 59, well-being module activity-level weight"'
-label var rawbwt_60    `"Replicate weight 60, well-being module activity-level weight"'
-label var rawbwt_61    `"Replicate weight 61, well-being module activity-level weight"'
-label var rawbwt_62    `"Replicate weight 62, well-being module activity-level weight"'
-label var rawbwt_63    `"Replicate weight 63, well-being module activity-level weight"'
-label var rawbwt_64    `"Replicate weight 64, well-being module activity-level weight"'
-label var rawbwt_65    `"Replicate weight 65, well-being module activity-level weight"'
-label var rawbwt_66    `"Replicate weight 66, well-being module activity-level weight"'
-label var rawbwt_67    `"Replicate weight 67, well-being module activity-level weight"'
-label var rawbwt_68    `"Replicate weight 68, well-being module activity-level weight"'
-label var rawbwt_69    `"Replicate weight 69, well-being module activity-level weight"'
-label var rawbwt_70    `"Replicate weight 70, well-being module activity-level weight"'
-label var rawbwt_71    `"Replicate weight 71, well-being module activity-level weight"'
-label var rawbwt_72    `"Replicate weight 72, well-being module activity-level weight"'
-label var rawbwt_73    `"Replicate weight 73, well-being module activity-level weight"'
-label var rawbwt_74    `"Replicate weight 74, well-being module activity-level weight"'
-label var rawbwt_75    `"Replicate weight 75, well-being module activity-level weight"'
-label var rawbwt_76    `"Replicate weight 76, well-being module activity-level weight"'
-label var rawbwt_77    `"Replicate weight 77, well-being module activity-level weight"'
-label var rawbwt_78    `"Replicate weight 78, well-being module activity-level weight"'
-label var rawbwt_79    `"Replicate weight 79, well-being module activity-level weight"'
-label var rawbwt_80    `"Replicate weight 80, well-being module activity-level weight"'
-label var rawbwt_81    `"Replicate weight 81, well-being module activity-level weight"'
-label var rawbwt_82    `"Replicate weight 82, well-being module activity-level weight"'
-label var rawbwt_83    `"Replicate weight 83, well-being module activity-level weight"'
-label var rawbwt_84    `"Replicate weight 84, well-being module activity-level weight"'
-label var rawbwt_85    `"Replicate weight 85, well-being module activity-level weight"'
-label var rawbwt_86    `"Replicate weight 86, well-being module activity-level weight"'
-label var rawbwt_87    `"Replicate weight 87, well-being module activity-level weight"'
-label var rawbwt_88    `"Replicate weight 88, well-being module activity-level weight"'
-label var rawbwt_89    `"Replicate weight 89, well-being module activity-level weight"'
-label var rawbwt_90    `"Replicate weight 90, well-being module activity-level weight"'
-label var rawbwt_91    `"Replicate weight 91, well-being module activity-level weight"'
-label var rawbwt_92    `"Replicate weight 92, well-being module activity-level weight"'
-label var rawbwt_93    `"Replicate weight 93, well-being module activity-level weight"'
-label var rawbwt_94    `"Replicate weight 94, well-being module activity-level weight"'
-label var rawbwt_95    `"Replicate weight 95, well-being module activity-level weight"'
-label var rawbwt_96    `"Replicate weight 96, well-being module activity-level weight"'
-label var rawbwt_97    `"Replicate weight 97, well-being module activity-level weight"'
-label var rawbwt_98    `"Replicate weight 98, well-being module activity-level weight"'
-label var rawbwt_99    `"Replicate weight 99, well-being module activity-level weight"'
-label var rawbwt_100   `"Replicate weight 100, well-being module activity-level weight"'
-label var rawbwt_101   `"Replicate weight 101, well-being module activity-level weight"'
-label var rawbwt_102   `"Replicate weight 102, well-being module activity-level weight"'
-label var rawbwt_103   `"Replicate weight 103, well-being module activity-level weight"'
-label var rawbwt_104   `"Replicate weight 104, well-being module activity-level weight"'
-label var rawbwt_105   `"Replicate weight 105, well-being module activity-level weight"'
-label var rawbwt_106   `"Replicate weight 106, well-being module activity-level weight"'
-label var rawbwt_107   `"Replicate weight 107, well-being module activity-level weight"'
-label var rawbwt_108   `"Replicate weight 108, well-being module activity-level weight"'
-label var rawbwt_109   `"Replicate weight 109, well-being module activity-level weight"'
-label var rawbwt_110   `"Replicate weight 110, well-being module activity-level weight"'
-label var rawbwt_111   `"Replicate weight 111, well-being module activity-level weight"'
-label var rawbwt_112   `"Replicate weight 112, well-being module activity-level weight"'
-label var rawbwt_113   `"Replicate weight 113, well-being module activity-level weight"'
-label var rawbwt_114   `"Replicate weight 114, well-being module activity-level weight"'
-label var rawbwt_115   `"Replicate weight 115, well-being module activity-level weight"'
-label var rawbwt_116   `"Replicate weight 116, well-being module activity-level weight"'
-label var rawbwt_117   `"Replicate weight 117, well-being module activity-level weight"'
-label var rawbwt_118   `"Replicate weight 118, well-being module activity-level weight"'
-label var rawbwt_119   `"Replicate weight 119, well-being module activity-level weight"'
-label var rawbwt_120   `"Replicate weight 120, well-being module activity-level weight"'
-label var rawbwt_121   `"Replicate weight 121, well-being module activity-level weight"'
-label var rawbwt_122   `"Replicate weight 122, well-being module activity-level weight"'
-label var rawbwt_123   `"Replicate weight 123, well-being module activity-level weight"'
-label var rawbwt_124   `"Replicate weight 124, well-being module activity-level weight"'
-label var rawbwt_125   `"Replicate weight 125, well-being module activity-level weight"'
-label var rawbwt_126   `"Replicate weight 126, well-being module activity-level weight"'
-label var rawbwt_127   `"Replicate weight 127, well-being module activity-level weight"'
-label var rawbwt_128   `"Replicate weight 128, well-being module activity-level weight"'
-label var rawbwt_129   `"Replicate weight 129, well-being module activity-level weight"'
-label var rawbwt_130   `"Replicate weight 130, well-being module activity-level weight"'
-label var rawbwt_131   `"Replicate weight 131, well-being module activity-level weight"'
-label var rawbwt_132   `"Replicate weight 132, well-being module activity-level weight"'
-label var rawbwt_133   `"Replicate weight 133, well-being module activity-level weight"'
-label var rawbwt_134   `"Replicate weight 134, well-being module activity-level weight"'
-label var rawbwt_135   `"Replicate weight 135, well-being module activity-level weight"'
-label var rawbwt_136   `"Replicate weight 136, well-being module activity-level weight"'
-label var rawbwt_137   `"Replicate weight 137, well-being module activity-level weight"'
-label var rawbwt_138   `"Replicate weight 138, well-being module activity-level weight"'
-label var rawbwt_139   `"Replicate weight 139, well-being module activity-level weight"'
-label var rawbwt_140   `"Replicate weight 140, well-being module activity-level weight"'
-label var rawbwt_141   `"Replicate weight 141, well-being module activity-level weight"'
-label var rawbwt_142   `"Replicate weight 142, well-being module activity-level weight"'
-label var rawbwt_143   `"Replicate weight 143, well-being module activity-level weight"'
-label var rawbwt_144   `"Replicate weight 144, well-being module activity-level weight"'
-label var rawbwt_145   `"Replicate weight 145, well-being module activity-level weight"'
-label var rawbwt_146   `"Replicate weight 146, well-being module activity-level weight"'
-label var rawbwt_147   `"Replicate weight 147, well-being module activity-level weight"'
-label var rawbwt_148   `"Replicate weight 148, well-being module activity-level weight"'
-label var rawbwt_149   `"Replicate weight 149, well-being module activity-level weight"'
-label var rawbwt_150   `"Replicate weight 150, well-being module activity-level weight"'
-label var rawbwt_151   `"Replicate weight 151, well-being module activity-level weight"'
-label var rawbwt_152   `"Replicate weight 152, well-being module activity-level weight"'
-label var rawbwt_153   `"Replicate weight 153, well-being module activity-level weight"'
-label var rawbwt_154   `"Replicate weight 154, well-being module activity-level weight"'
-label var rawbwt_155   `"Replicate weight 155, well-being module activity-level weight"'
-label var rawbwt_156   `"Replicate weight 156, well-being module activity-level weight"'
-label var rawbwt_157   `"Replicate weight 157, well-being module activity-level weight"'
-label var rawbwt_158   `"Replicate weight 158, well-being module activity-level weight"'
-label var rawbwt_159   `"Replicate weight 159, well-being module activity-level weight"'
-label var rawbwt_160   `"Replicate weight 160, well-being module activity-level weight"'
-label var rawbwt       `"Replicate weight, well-being module activity-level weight"'
+label var rectype        `"Record Type"'
+label var year           `"Survey year"'
+label var caseid         `"ATUS Case ID"'
+label var famincome      `"Family income"'
+label var hh_numkids     `"Number of children under 18 in household"'
+label var ageychild_cps8 `"Age of youngest household child (CPS)"'
+label var pernum         `"Person number (general)"'
+label var lineno         `"Person line number"'
+label var lineno_cps8    `"Person line number (CPS)"'
+label var day            `"ATUS interview day of the week"'
+label var wt06           `"Person weight, 2006 methodology"'
+label var age            `"Age"'
+label var sex            `"Sex"'
+label var race           `"Race"'
+label var hispan         `"Hispanic origin"'
+label var marst          `"Marital status"'
+label var relate         `"Relationship to ATUS respondent"'
+label var educ           `"Highest level of school completed"'
+label var educyrs        `"Years of education"'
+label var schlcoll       `"Enrollment in school or college"'
+label var empstat        `"Labor force status"'
+label var fullpart       `"Full time/part time employment status"'
+label var uhrsworkt      `"Hours usually worked per week"'
+label var uhrswork1      `"Hours usually worked per week at main job"'
+label var uhrswork2      `"Hours usually worked per week at other jobs"'
+label var spousepres     `"Spouse or unmarried partner in household"'
+label var spage          `"Age (spouse or partner)"'
+label var spsex          `"Sex of respondent's spouse or unmarried partner"'
+label var spempnot       `"Employed (spouse or partner)"'
+label var spempstat      `"Employment status (spouse or partner)"'
+label var spusualhrs     `"Usual work hours (spouse or partner)"'
+label var hh_numownkids  `"Number of own children under 18 in household"'
+label var kidund1        `"Own child under 1 in household"'
+label var kid1to2        `"Own child age 1 to 2 in household"'
+label var age_sp         `"Age [of spouse]"'
+label var sex_sp         `"Sex [of spouse]"'
+label var race_sp        `"Race [of spouse]"'
+label var hispan_sp      `"Hispanic origin [of spouse]"'
+label var educ_sp        `"Highest level of school completed [of spouse]"'
+label var educyrs_sp     `"Years of education [of spouse]"'
+label var empstat_sp     `"Labor force status [of spouse]"'
+label var uhrsworkt_sp   `"Hours usually worked per week [of spouse]"'
+label var actline        `"Activity line number"'
+label var activity       `"Activity"'
+label var where          `"Location of activity"'
+label var duration       `"Duration of activity"'
+label var start          `"Activity start time"'
+label var stop           `"Activity stop time"'
+label var scpain         `"Pain scale"'
+label var schappy        `"Happiness scale"'
+label var scsad          `"Sadness scale"'
+label var sctired        `"Fatigue scale"'
+label var scstress       `"Stress scale"'
+label var interact       `"Interacting during activity"'
+label var meaning        `"Meaningfulness scale"'
+label var osad           `"Order of SCSAD"'
+label var ohappy         `"Order of SCHAPPY"'
+label var opain          `"Order of SCPAIN"'
+label var otired         `"Order of SCTIRED"'
+label var ostress        `"Order of SCSTRESS"'
+label var wbelig         `"Activity eligible for well-being module selection"'
+label var awbwt          `"Well-being Module final statistical weight, activity-level"'
+
+label define rectype_lbl 1 `"H"'
+label define rectype_lbl 2 `"P"', add
+label define rectype_lbl 3 `"A"', add
+label define rectype_lbl 4 `"W"', add
+label define rectype_lbl 5 `"R"', add
+label values rectype rectype_lbl
+
+label define famincome_lbl 001 `"Less than $5,000"'
+label define famincome_lbl 002 `"$5,000 to $7,499"', add
+label define famincome_lbl 003 `"$7,500 to $9,999"', add
+label define famincome_lbl 004 `"$10,000 to $12,499"', add
+label define famincome_lbl 005 `"$12,500 to $14,999"', add
+label define famincome_lbl 006 `"$15,000 to $19,999"', add
+label define famincome_lbl 007 `"$20,000 to $24,999"', add
+label define famincome_lbl 008 `"$25,000 to $29,999"', add
+label define famincome_lbl 009 `"$30,000 to $34,999"', add
+label define famincome_lbl 010 `"$35,000 to $39,999"', add
+label define famincome_lbl 011 `"$40,000 to $49,999"', add
+label define famincome_lbl 012 `"$50,000 to $59,999"', add
+label define famincome_lbl 013 `"$60,000 to $74,999"', add
+label define famincome_lbl 014 `"$75,000 to $99,999"', add
+label define famincome_lbl 015 `"$100,000 to $149,999"', add
+label define famincome_lbl 016 `"$150,000 and over"', add
+label define famincome_lbl 996 `"Refused"', add
+label define famincome_lbl 997 `"Don't know"', add
+label define famincome_lbl 998 `"Blank"', add
+label values famincome famincome_lbl
+
+label define hh_numkids_lbl 00 `"0"'
+label define hh_numkids_lbl 01 `"1"', add
+label define hh_numkids_lbl 02 `"2"', add
+label define hh_numkids_lbl 03 `"3"', add
+label define hh_numkids_lbl 04 `"4"', add
+label define hh_numkids_lbl 05 `"5"', add
+label define hh_numkids_lbl 06 `"6"', add
+label define hh_numkids_lbl 07 `"7"', add
+label define hh_numkids_lbl 08 `"8"', add
+label define hh_numkids_lbl 09 `"9"', add
+label define hh_numkids_lbl 10 `"10"', add
+label define hh_numkids_lbl 11 `"11"', add
+label define hh_numkids_lbl 12 `"12"', add
+label define hh_numkids_lbl 99 `"NIU (Not in universe)"', add
+label values hh_numkids hh_numkids_lbl
+
+label define ageychild_cps8_lbl 000 `"0"'
+label define ageychild_cps8_lbl 001 `"1"', add
+label define ageychild_cps8_lbl 002 `"2"', add
+label define ageychild_cps8_lbl 003 `"3"', add
+label define ageychild_cps8_lbl 004 `"4"', add
+label define ageychild_cps8_lbl 005 `"5"', add
+label define ageychild_cps8_lbl 006 `"6"', add
+label define ageychild_cps8_lbl 007 `"7"', add
+label define ageychild_cps8_lbl 008 `"8"', add
+label define ageychild_cps8_lbl 009 `"9"', add
+label define ageychild_cps8_lbl 010 `"10"', add
+label define ageychild_cps8_lbl 011 `"11"', add
+label define ageychild_cps8_lbl 012 `"12"', add
+label define ageychild_cps8_lbl 013 `"13"', add
+label define ageychild_cps8_lbl 014 `"14"', add
+label define ageychild_cps8_lbl 015 `"15"', add
+label define ageychild_cps8_lbl 016 `"16"', add
+label define ageychild_cps8_lbl 017 `"17"', add
+label define ageychild_cps8_lbl 999 `"NIU (Not in universe)"', add
+label values ageychild_cps8 ageychild_cps8_lbl
 
 label define pernum_lbl 01 `"1"'
 label define pernum_lbl 02 `"2"', add
@@ -970,6 +405,15 @@ label define educyrs_lbl 321 `"Doctoral degree"', add
 label define educyrs_lbl 999 `"NIU (Not in universe)"', add
 label values educyrs educyrs_lbl
 
+label define schlcoll_lbl 01 `"Not enrolled"'
+label define schlcoll_lbl 02 `"High school part time"', add
+label define schlcoll_lbl 03 `"High school full time"', add
+label define schlcoll_lbl 04 `"College/university part time"', add
+label define schlcoll_lbl 05 `"College/university full time"', add
+label define schlcoll_lbl 96 `"Refused"', add
+label define schlcoll_lbl 99 `"NIU (Not in universe)"', add
+label values schlcoll schlcoll_lbl
+
 label define empstat_lbl 01 `"Employed - at work"'
 label define empstat_lbl 02 `"Employed - absent"', add
 label define empstat_lbl 03 `"Unemployed - on layoff"', add
@@ -1115,45 +559,29 @@ label define spusualhrs_lbl 995 `"Hours vary"', add
 label define spusualhrs_lbl 999 `"NIU (Not in universe)"', add
 label values spusualhrs spusualhrs_lbl
 
-label define pernum_sp_lbl 01 `"1"'
-label define pernum_sp_lbl 02 `"2"', add
-label define pernum_sp_lbl 03 `"3"', add
-label define pernum_sp_lbl 04 `"4"', add
-label define pernum_sp_lbl 05 `"5"', add
-label define pernum_sp_lbl 06 `"6"', add
-label define pernum_sp_lbl 07 `"7"', add
-label define pernum_sp_lbl 08 `"8"', add
-label define pernum_sp_lbl 09 `"9"', add
-label define pernum_sp_lbl 10 `"10"', add
-label define pernum_sp_lbl 11 `"11"', add
-label define pernum_sp_lbl 12 `"12"', add
-label define pernum_sp_lbl 13 `"13"', add
-label define pernum_sp_lbl 14 `"14"', add
-label define pernum_sp_lbl 15 `"15"', add
-label define pernum_sp_lbl 16 `"16"', add
-label values pernum_sp pernum_sp_lbl
+label define hh_numownkids_lbl 00 `"0"'
+label define hh_numownkids_lbl 01 `"1"', add
+label define hh_numownkids_lbl 02 `"2"', add
+label define hh_numownkids_lbl 03 `"3"', add
+label define hh_numownkids_lbl 04 `"4"', add
+label define hh_numownkids_lbl 05 `"5"', add
+label define hh_numownkids_lbl 06 `"6"', add
+label define hh_numownkids_lbl 07 `"7"', add
+label define hh_numownkids_lbl 08 `"8"', add
+label define hh_numownkids_lbl 09 `"9"', add
+label define hh_numownkids_lbl 10 `"10"', add
+label define hh_numownkids_lbl 99 `"NIU (Not in universe)"', add
+label values hh_numownkids hh_numownkids_lbl
 
-label define lineno_sp_lbl 001 `"1"'
-label define lineno_sp_lbl 002 `"2"', add
-label define lineno_sp_lbl 003 `"3"', add
-label define lineno_sp_lbl 004 `"4"', add
-label define lineno_sp_lbl 005 `"5"', add
-label define lineno_sp_lbl 006 `"6"', add
-label define lineno_sp_lbl 007 `"7"', add
-label define lineno_sp_lbl 008 `"8"', add
-label define lineno_sp_lbl 009 `"9"', add
-label define lineno_sp_lbl 010 `"10"', add
-label define lineno_sp_lbl 011 `"11"', add
-label define lineno_sp_lbl 012 `"12"', add
-label define lineno_sp_lbl 013 `"13"', add
-label define lineno_sp_lbl 014 `"14"', add
-label define lineno_sp_lbl 015 `"15"', add
-label define lineno_sp_lbl 016 `"16"', add
-label define lineno_sp_lbl 017 `"17"', add
-label define lineno_sp_lbl 018 `"18"', add
-label define lineno_sp_lbl 019 `"19"', add
-label define lineno_sp_lbl 999 `"NIU (Not in universe)"', add
-label values lineno_sp lineno_sp_lbl
+label define kidund1_lbl 00 `"No"'
+label define kidund1_lbl 01 `"Yes"', add
+label define kidund1_lbl 99 `"NIU (Not in universe)"', add
+label values kidund1 kidund1_lbl
+
+label define kid1to2_lbl 00 `"No"'
+label define kid1to2_lbl 01 `"Yes"', add
+label define kid1to2_lbl 99 `"NIU (Not in universe)"', add
+label values kid1to2 kid1to2_lbl
 
 label define sex_sp_lbl 01 `"Male"'
 label define sex_sp_lbl 02 `"Female"', add
@@ -2029,5 +1457,7 @@ label values ostress ostress_lbl
 label define wbelig_lbl 0 `"No"'
 label define wbelig_lbl 1 `"Yes"', add
 label values wbelig wbelig_lbl
+
+
 
 save "wellbeing_activity"
