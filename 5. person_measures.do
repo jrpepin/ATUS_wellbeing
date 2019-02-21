@@ -27,7 +27,7 @@ gen 		wfa=.
 		(_spemp==0) & 						///				/*spouse is not employed*/
 		(spusualhrs==0 | spusualhrs==999)					/*spouse works no hours*/
 
-		replace wfa=2 if 					///	
+		replace wfa=1 if 					///	
 		sex==2 & 							///				/*resp is female */
 		(empstat!=1 & empstat!=2) &			///				/*resp not employed*/
 		(uhrsworkt==0 | uhrsworkt==9999) &  ///				/*respondent no hours*/
@@ -43,7 +43,7 @@ gen 		wfa=.
 		(_spemp==1) &						///				/*sp employed*/
 		(spusualhrs>=35 & spusualhrs<995)   				/*sp works 35+ hrs*/
 
-		replace wfa=1 if 					/// 
+		replace wfa=2 if 					/// 
 		sex==2 & 							///				/*resp is female */
 		(empstat==1 | empstat==2) & 		///				/*resp is employed*/
 		(uhrsworkt>=35 & uhrsworkt<=9995) & ///				/*resp works 35+ hrs*/
@@ -59,34 +59,37 @@ gen 		wfa=.
 		
 /*MALE full-time FEMALE sp part-time*/
 		replace wfa=4 if 					///				
+		sex==1	&							///				/*resp is male */
 		(empstat==1 | empstat==2) & 		///				/*resp employed*/
 		(uhrsworkt>35 | uhrsworkt<=9995) & 	///				/*resp works 35+hrs*/
 		(_spemp==1) & 						///				/*sp employed*/
-		(spusualhrs>=0 & spusualhrs<35) | spusualhrs==995 & ///	/*sp hrs < 35 */
-		sex==1
+		(spusualhrs>=0 & spusualhrs<35) | spusualhrs==995  ///	/*sp hrs < 35 */
+
 
 		replace wfa=4 if 					///				
+		sex==2	& 							///				/*resp is female */
 		(empstat==1 | empstat==2) & 		///				/*resp employed*/
 		(uhrsworkt<=35 | uhrsworkt>=9995) & ///				/*resp hrs < 35*/
 		(_spemp==1) & 						///				/*sp employed*/
-		(spusualhrs>=35 & spusualhrs<995) &	///				/*sp works 35+ hrs*/
-		sex==2
+		(spusualhrs>=35 & spusualhrs<995)	///				/*sp works 35+ hrs*/
 
 
 /*FEMALE full-time MALE resp part-time*/
 		replace wfa=5 if 					///				
+		sex==1 & 							///				/*resp is male */ 
 		(empstat==1 | empstat==2) & 		///				/*resp employed*/
 		(uhrsworkt<=35 | uhrsworkt>=9995) & ///				/*resp hrs < 35*/
 		(_spemp==1) & 						///				/*sp employed*/
-		(spusualhrs>=35 & spusualhrs<995) &	///				/*sp works 35+ hrs*/
-		sex==1
+		(spusualhrs>=35 & spusualhrs<995)	///				/*sp works 35+ hrs*/
+
 		
 		replace wfa=5 if 					///				
+		sex==2 & 							///				/*resp is female */
 		(empstat==1 | empstat==2) & 		///				/*resp employed*/
 		(uhrsworkt>35 | uhrsworkt<=9995) & 	///				/*resp works 35+hrs*/
 		(_spemp==1) & 						///				/*sp employed*/
-		(spusualhrs>=0 & spusualhrs<35) | spusualhrs==995 & ///	/*sp hrs < 35 */
-		sex==2
+		(spusualhrs>=0 & spusualhrs<35) | spusualhrs==995  ///	/*sp hrs < 35 */
+
 		
 /*neither works*/
 		replace wfa=6 if 					///	
@@ -104,7 +107,7 @@ gen 		wfa=.
 		replace wfa=7 if wfa==.
 
 		label variable wfa "empstat & hrs definition"
-		label define wfal 	1 "Male breadwinner/Sp homemaker" 2 "Female breadwinner/SP homemaker" 3 "dual-earners" ///
+		label define wfal 	1 "Male breadwinner/Sp homemaker"   2 "Female breadwinner/SP homemaker" 3 "dual-earners" ///
 							4 "Male full-time/Female part-time" 5 "Female full-time/Male part-time" 6 "neither works" ///
 							7 "Other"
 		label values wfa wfal
@@ -200,6 +203,3 @@ gen other = (aian==1 | asian==1 | mixed_race==1 /*| hisp==1*/) & (white==0 & bla
 delimit cr
 
 save wellbeing.dta, replace
-
-
-
