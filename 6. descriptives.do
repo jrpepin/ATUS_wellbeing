@@ -6,6 +6,14 @@ use wellbeing.dta
 *********************************************************************************************************
 /*Basic descriptives*/
 *********************************************************************************************************
+/*couple-types are the rows and gender is the columns. 
+We want column percents with Total Ns for men and women (
+want to be able to figure out how many men and women are in each couple type).
+*/
+
+tab wfa sex if actline==1, col
+
+// Well-being averages by couple-type
 tabstat sphappy spmeaning spstress sptired spsad if sex ==1, by (wfa)
 tabstat sphappy spmeaning spstress sptired spsad if sex ==2, by (wfa)
 
