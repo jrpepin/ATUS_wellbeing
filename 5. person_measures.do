@@ -111,6 +111,17 @@ gen 		wfa=.
 							4 "Male full-time/Female part-time" 5 "Female full-time/Male part-time" 6 "neither works" ///
 							7 "Other"
 		label values wfa wfal
+
+// dummy wfa variables
+tab 	wfa, 		gen(wfa)
+rename	wfa1 		mbw
+rename	wfa2 		wbw
+rename	wfa3 		dual
+rename	wfa4 		mneo
+rename	wfa5 		wneo
+rename	wfa6 		neither
+rename	wfa7 		otherwfa
+
 		
 *********************************************************************************************************
 /*create well-being measures*/
@@ -161,7 +172,7 @@ gen age2=0;
 
 	label define age_lb 1 "Less 30" 2 "30-39" 3 "40-49" 4 "50-59" 5 "60 and over";
 	label values age2 age_lb;
-/*
+
 gen income=9;
 	replace income=1 if famincome <= 7;
 	replace income=2 if famincome >=8 & famincome<=11;
@@ -171,17 +182,17 @@ gen income=9;
 
 	lab def inc_lb 1 "Less than 25" 2 "25-49999" 3 "50-74999" 4 "75-149999" 5 "150 and over" 9 "missing";
 	lab values income inc_lb;
-*/
+
 gen collgrad=0;
 	replace collgrad=1 if educ>=40 & educ<999;
 	lab var collgrad "college graduate";
 	label values collgrad dummyl;
-/*
+
 gen inschool=0 if schlcoll==1 | schlcoll==99; /*only available for those 15-49!*/
 	replace inschool=1 if schlcoll>=2 & schlcoll<=5;
 	lab var inschool "currently in school";
 	label values inschool dummyl;
-*/
+
 gen weekend=0;
 	replace weekend=1 if day==1 | day==7;
 	label values weekend dummyl;
@@ -200,6 +211,18 @@ gen asian = (race>=130 & race<140 & hispan==100);
 gen mixed_race = (race>=200 & race<600 & hispan==100);
 gen other = (aian==1 | asian==1 | mixed_race==1 /*| hisp==1*/) & (white==0 & black==0 & hisp==0);
 
+/* Parent variables */
+// could have used ageychild_CPS8 but didn't....doesn't match exactly
+cap drop 	kidu2
+gen 		kidu2 = 0
+replace 	kidu2 = 1 if kidund1 == 1 | kid1to2 ==1
+
+/* Number of kids */
+// which one do we want to use: hh_numownkids & hh_numkids
+
+gen hh_numkids 	= hhchild
+
 delimit cr
 
 save wellbeing.dta, replace
+
