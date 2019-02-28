@@ -6,139 +6,139 @@ cd "C:\Users\Joanna\Dropbox\Repositories\ATUS_Wellbeing"
 set more off
 
 clear
-quietly infix                      ///
-  byte    rectype         1-1      ///
-  long    year            2-6      ///
-  double  caseid          7-20     ///
-  int     famincome       21-23    ///
-  byte    hh_numkids      24-25    ///
-  int     ageychild_cps8  26-28    ///
-  byte    pernum          29-30    ///
-  int     lineno          31-33    ///
-  int     lineno_cps8     34-36    ///
-  byte    day             37-38    ///
-  double  wt06            39-55    ///
-  int     age             56-58    ///
-  byte    sex             59-60    ///
-  int     race            61-64    ///
-  int     hispan          65-68    ///
-  byte    marst           69-70    ///
-  int     relate          71-73    ///
-  int     educ            74-76    ///
-  int     educyrs         77-79    ///
-  byte    schlcoll        80-81    ///
-  byte    empstat         82-83    ///
-  byte    fullpart        84-85    ///
-  int     uhrsworkt       86-89    ///
-  int     uhrswork1       90-92    ///
-  int     uhrswork2       93-95    ///
-  byte    spousepres      96-97    ///
-  int     spage           98-100   ///
-  int     spsex           101-103  ///
-  byte    spempnot        104-105  ///
-  byte    spempstat       106-107  ///
-  int     spusualhrs      108-110  ///
-  byte    hh_numownkids   111-112  ///
-  byte    kidund1         113-114  ///
-  byte    kid1to2         115-116  ///
-  int     age_sp          117-119  ///
-  byte    sex_sp          120-121  ///
-  int     race_sp         122-125  ///
-  int     hispan_sp       126-129  ///
-  int     educ_sp         130-132  ///
-  int     educyrs_sp      133-135  ///
-  byte    empstat_sp      136-137  ///
-  int     uhrsworkt_sp    138-141  ///
-  byte    actline         142-143  ///
-  long    activity        144-149  ///
-  int     where           150-153  ///
-  int     duration        154-157  ///
-  str     start           158-165  ///
-  str     stop            166-173  ///
-  byte    scpain          174-175  ///
-  byte    schappy         176-177  ///
-  byte    scsad           178-179  ///
-  byte    sctired         180-181  ///
-  byte    scstress        182-183  ///
-  byte    interact        184-185  ///
-  byte    meaning         186-187  ///
-  byte    osad            188-189  ///
-  byte    ohappy          190-191  ///
-  byte    opain           192-193  ///
-  byte    otired          194-195  ///
-  byte    ostress         196-197  ///
-  byte    wbelig          198-198  ///
-  double  awbwt           199-213  ///
-  using `"atus_00027.dat"'
+quietly infix                     ///
+  byte    rectype        1-1      ///
+  long    year           2-6      ///
+  double  caseid         7-20     ///
+  int     famincome      21-23    ///
+  byte    hh_numkids     24-25    ///
+  int     ageychild      26-28    ///
+  byte    pernum         29-30    ///
+  int     lineno         31-33    ///
+  int     lineno_cps8    34-36    ///
+  byte    day            37-38    ///
+  double  wt06           39-55    ///
+  int     age            56-58    ///
+  byte    sex            59-60    ///
+  int     race           61-64    ///
+  int     hispan         65-68    ///
+  byte    marst          69-70    ///
+  int     relate         71-73    ///
+  int     educ           74-76    ///
+  int     educyrs        77-79    ///
+  byte    schlcoll       80-81    ///
+  byte    empstat        82-83    ///
+  byte    fullpart       84-85    ///
+  int     uhrsworkt      86-89    ///
+  int     uhrswork1      90-92    ///
+  int     uhrswork2      93-95    ///
+  byte    spousepres     96-97    ///
+  int     spage          98-100   ///
+  int     spsex          101-103  ///
+  byte    spempnot       104-105  ///
+  byte    spempstat      106-107  ///
+  int     spusualhrs     108-110  ///
+  byte    hh_numownkids  111-112  ///
+  byte    kidund1        113-114  ///
+  byte    kid1to2        115-116  ///
+  int     age_sp         117-119  ///
+  byte    sex_sp         120-121  ///
+  int     race_sp        122-125  ///
+  int     hispan_sp      126-129  ///
+  int     educ_sp        130-132  ///
+  int     educyrs_sp     133-135  ///
+  byte    empstat_sp     136-137  ///
+  int     uhrsworkt_sp   138-141  ///
+  byte    actline        142-143  ///
+  long    activity       144-149  ///
+  int     where          150-153  ///
+  int     duration       154-157  ///
+  str     start          158-165  ///
+  str     stop           166-173  ///
+  byte    scpain         174-175  ///
+  byte    schappy        176-177  ///
+  byte    scsad          178-179  ///
+  byte    sctired        180-181  ///
+  byte    scstress       182-183  ///
+  byte    interact       184-185  ///
+  byte    meaning        186-187  ///
+  byte    osad           188-189  ///
+  byte    ohappy         190-191  ///
+  byte    opain          192-193  ///
+  byte    otired         194-195  ///
+  byte    ostress        196-197  ///
+  byte    wbelig         198-198  ///
+  double  awbwt          199-213  ///
+  using `"atus_00028.dat"'
 
-replace awbwt          = awbwt          / 1000000
+replace awbwt         = awbwt         / 1000000
 
-format caseid         %14.0g
-format wt06           %17.0g
-format awbwt          %15.6f
+format caseid        %14.0g
+format wt06          %17.0g
+format awbwt         %15.6f
 
-label var rectype        `"Record Type"'
-label var year           `"Survey year"'
-label var caseid         `"ATUS Case ID"'
-label var famincome      `"Family income"'
-label var hh_numkids     `"Number of children under 18 in household"'
-label var ageychild_cps8 `"Age of youngest household child (CPS)"'
-label var pernum         `"Person number (general)"'
-label var lineno         `"Person line number"'
-label var lineno_cps8    `"Person line number (CPS)"'
-label var day            `"ATUS interview day of the week"'
-label var wt06           `"Person weight, 2006 methodology"'
-label var age            `"Age"'
-label var sex            `"Sex"'
-label var race           `"Race"'
-label var hispan         `"Hispanic origin"'
-label var marst          `"Marital status"'
-label var relate         `"Relationship to ATUS respondent"'
-label var educ           `"Highest level of school completed"'
-label var educyrs        `"Years of education"'
-label var schlcoll       `"Enrollment in school or college"'
-label var empstat        `"Labor force status"'
-label var fullpart       `"Full time/part time employment status"'
-label var uhrsworkt      `"Hours usually worked per week"'
-label var uhrswork1      `"Hours usually worked per week at main job"'
-label var uhrswork2      `"Hours usually worked per week at other jobs"'
-label var spousepres     `"Spouse or unmarried partner in household"'
-label var spage          `"Age (spouse or partner)"'
-label var spsex          `"Sex of respondent's spouse or unmarried partner"'
-label var spempnot       `"Employed (spouse or partner)"'
-label var spempstat      `"Employment status (spouse or partner)"'
-label var spusualhrs     `"Usual work hours (spouse or partner)"'
-label var hh_numownkids  `"Number of own children under 18 in household"'
-label var kidund1        `"Own child under 1 in household"'
-label var kid1to2        `"Own child age 1 to 2 in household"'
-label var age_sp         `"Age [of spouse]"'
-label var sex_sp         `"Sex [of spouse]"'
-label var race_sp        `"Race [of spouse]"'
-label var hispan_sp      `"Hispanic origin [of spouse]"'
-label var educ_sp        `"Highest level of school completed [of spouse]"'
-label var educyrs_sp     `"Years of education [of spouse]"'
-label var empstat_sp     `"Labor force status [of spouse]"'
-label var uhrsworkt_sp   `"Hours usually worked per week [of spouse]"'
-label var actline        `"Activity line number"'
-label var activity       `"Activity"'
-label var where          `"Location of activity"'
-label var duration       `"Duration of activity"'
-label var start          `"Activity start time"'
-label var stop           `"Activity stop time"'
-label var scpain         `"Pain scale"'
-label var schappy        `"Happiness scale"'
-label var scsad          `"Sadness scale"'
-label var sctired        `"Fatigue scale"'
-label var scstress       `"Stress scale"'
-label var interact       `"Interacting during activity"'
-label var meaning        `"Meaningfulness scale"'
-label var osad           `"Order of SCSAD"'
-label var ohappy         `"Order of SCHAPPY"'
-label var opain          `"Order of SCPAIN"'
-label var otired         `"Order of SCTIRED"'
-label var ostress        `"Order of SCSTRESS"'
-label var wbelig         `"Activity eligible for well-being module selection"'
-label var awbwt          `"Well-being Module final statistical weight, activity-level"'
+label var rectype       `"Record Type"'
+label var year          `"Survey year"'
+label var caseid        `"ATUS Case ID"'
+label var famincome     `"Family income"'
+label var hh_numkids    `"Number of children under 18 in household"'
+label var ageychild     `"Age of youngest household child"'
+label var pernum        `"Person number (general)"'
+label var lineno        `"Person line number"'
+label var lineno_cps8   `"Person line number (CPS)"'
+label var day           `"ATUS interview day of the week"'
+label var wt06          `"Person weight, 2006 methodology"'
+label var age           `"Age"'
+label var sex           `"Sex"'
+label var race          `"Race"'
+label var hispan        `"Hispanic origin"'
+label var marst         `"Marital status"'
+label var relate        `"Relationship to ATUS respondent"'
+label var educ          `"Highest level of school completed"'
+label var educyrs       `"Years of education"'
+label var schlcoll      `"Enrollment in school or college"'
+label var empstat       `"Labor force status"'
+label var fullpart      `"Full time/part time employment status"'
+label var uhrsworkt     `"Hours usually worked per week"'
+label var uhrswork1     `"Hours usually worked per week at main job"'
+label var uhrswork2     `"Hours usually worked per week at other jobs"'
+label var spousepres    `"Spouse or unmarried partner in household"'
+label var spage         `"Age (spouse or partner)"'
+label var spsex         `"Sex of respondent's spouse or unmarried partner"'
+label var spempnot      `"Employed (spouse or partner)"'
+label var spempstat     `"Employment status (spouse or partner)"'
+label var spusualhrs    `"Usual work hours (spouse or partner)"'
+label var hh_numownkids `"Number of own children under 18 in household"'
+label var kidund1       `"Own child under 1 in household"'
+label var kid1to2       `"Own child age 1 to 2 in household"'
+label var age_sp        `"Age [of spouse]"'
+label var sex_sp        `"Sex [of spouse]"'
+label var race_sp       `"Race [of spouse]"'
+label var hispan_sp     `"Hispanic origin [of spouse]"'
+label var educ_sp       `"Highest level of school completed [of spouse]"'
+label var educyrs_sp    `"Years of education [of spouse]"'
+label var empstat_sp    `"Labor force status [of spouse]"'
+label var uhrsworkt_sp  `"Hours usually worked per week [of spouse]"'
+label var actline       `"Activity line number"'
+label var activity      `"Activity"'
+label var where         `"Location of activity"'
+label var duration      `"Duration of activity"'
+label var start         `"Activity start time"'
+label var stop          `"Activity stop time"'
+label var scpain        `"Pain scale"'
+label var schappy       `"Happiness scale"'
+label var scsad         `"Sadness scale"'
+label var sctired       `"Fatigue scale"'
+label var scstress      `"Stress scale"'
+label var interact      `"Interacting during activity"'
+label var meaning       `"Meaningfulness scale"'
+label var osad          `"Order of SCSAD"'
+label var ohappy        `"Order of SCHAPPY"'
+label var opain         `"Order of SCPAIN"'
+label var otired        `"Order of SCTIRED"'
+label var ostress       `"Order of SCSTRESS"'
+label var wbelig        `"Activity eligible for well-being module selection"'
+label var awbwt         `"Well-being Module final statistical weight, activity-level"'
 
 label define rectype_lbl 1 `"H"'
 label define rectype_lbl 2 `"P"', add
@@ -184,26 +184,26 @@ label define hh_numkids_lbl 12 `"12"', add
 label define hh_numkids_lbl 99 `"NIU (Not in universe)"', add
 label values hh_numkids hh_numkids_lbl
 
-label define ageychild_cps8_lbl 000 `"0"'
-label define ageychild_cps8_lbl 001 `"1"', add
-label define ageychild_cps8_lbl 002 `"2"', add
-label define ageychild_cps8_lbl 003 `"3"', add
-label define ageychild_cps8_lbl 004 `"4"', add
-label define ageychild_cps8_lbl 005 `"5"', add
-label define ageychild_cps8_lbl 006 `"6"', add
-label define ageychild_cps8_lbl 007 `"7"', add
-label define ageychild_cps8_lbl 008 `"8"', add
-label define ageychild_cps8_lbl 009 `"9"', add
-label define ageychild_cps8_lbl 010 `"10"', add
-label define ageychild_cps8_lbl 011 `"11"', add
-label define ageychild_cps8_lbl 012 `"12"', add
-label define ageychild_cps8_lbl 013 `"13"', add
-label define ageychild_cps8_lbl 014 `"14"', add
-label define ageychild_cps8_lbl 015 `"15"', add
-label define ageychild_cps8_lbl 016 `"16"', add
-label define ageychild_cps8_lbl 017 `"17"', add
-label define ageychild_cps8_lbl 999 `"NIU (Not in universe)"', add
-label values ageychild_cps8 ageychild_cps8_lbl
+label define ageychild_lbl 000 `"0"'
+label define ageychild_lbl 001 `"1"', add
+label define ageychild_lbl 002 `"2"', add
+label define ageychild_lbl 003 `"3"', add
+label define ageychild_lbl 004 `"4"', add
+label define ageychild_lbl 005 `"5"', add
+label define ageychild_lbl 006 `"6"', add
+label define ageychild_lbl 007 `"7"', add
+label define ageychild_lbl 008 `"8"', add
+label define ageychild_lbl 009 `"9"', add
+label define ageychild_lbl 010 `"10"', add
+label define ageychild_lbl 011 `"11"', add
+label define ageychild_lbl 012 `"12"', add
+label define ageychild_lbl 013 `"13"', add
+label define ageychild_lbl 014 `"14"', add
+label define ageychild_lbl 015 `"15"', add
+label define ageychild_lbl 016 `"16"', add
+label define ageychild_lbl 017 `"17"', add
+label define ageychild_lbl 999 `"NIU (Not in universe)"', add
+label values ageychild ageychild_lbl
 
 label define pernum_lbl 01 `"1"'
 label define pernum_lbl 02 `"2"', add
@@ -1460,4 +1460,4 @@ label values wbelig wbelig_lbl
 
 
 
-save "wellbeing_activity"
+save "wellbeing_activity", replace
