@@ -212,17 +212,73 @@ gen mixed_race = (race>=200 & race<600 & hispan==100);
 gen other = (aian==1 | asian==1 | mixed_race==1 /*| hisp==1*/) & (white==0 & black==0 & hisp==0);
 
 /* Parent variables */
-// could have used ageychild_CPS8 but didn't....doesn't match exactly
 cap drop 	kidu2
 gen 		kidu2 = 0
-replace 	kidu2 = 1 if kidund1 == 1 | kid1to2 ==1
+replace 	kidu2 = 1 if ageychild <= 2
 
 /* Number of kids */
-// which one do we want to use: hh_numownkids & hh_numkids
+gen hh_numkids 	= numkids
 
-gen hh_numkids 	= hhchild
+*********************************************************************************************************
+/*create activity categories*/
+*********************************************************************************************************
+local mwcodes 
+(activity>=050000 & activity<060000) | /paid work/
+(activity>=180500 & activity<180600)   /travel related to paid work/;
+local mwlabel "Mareket work";
 
-delimit cr
+local cwcodes
+(activity>=030000 & activity<050000) | /hh & non-hh care/
+(activity>=180300 & activity<180500)   /travel related to care work/;
+local cwlabel "A&H: care work";
+
+local nmcodes
+(activity>=020000 & activity<020903) | /hh tasks 1/
+(activity>020904 & activity<030000)  | /hh tasks 2/
+(activity>=180200 & activity<180300) | /travel hh tasks/
+(activity>=070000 & activity<080000) | /goods 1/
+(activity>=180700 & activity<180800)   /travel goods 1/;
+local nmlabel "A&H: non-market work";
+
+local lecodes
+(activity>=080000 & activity<110000) | /goods 2/
+(activity>180800 & activity<181100)  | /travel goods 2/
+(activity>=110000 & activity<140000) | /eating, socializing, sports/
+(activity>=181100 & activity<181400) | /travel related to eating, socializing, sports/
+(activity>=160000 & activity<170000) | /phone calls/
+(activity>=181600 & activity<181700) | /travel related to phone calls/
+(activity>=020903 & activity<=020904)| /hh/pers mail/email/
+/
+(activity>=010101 & activity<010103) | /sleeping & personal care 1/
+(activity>=010301 & activity<020000) | /sleeping & personal care 2/
+(activity>=180100 & activity<180200) | /travel related to personal care/
+(activity>=060000 & activity<070000) | /education/
+(activity>=180600 & activity<180700) | /ed travel/
+(activity>=140000 & activity<160000) | /relig, civic/
+(activity>=181400 & activity<181600) | /relig, civic travel/
+(activity>=010300 & activity<010400) | /health self care/
+(activity>=080400 & activity<080500) | /med svcs/
+(activity==180804)                   | /travel med svcs/
+(activity>=500000 & activity<600000) | /unable to code/
+(activity>=181800 & activity<190000) /security rel to travel, other travel/;
+local lelabel "A&H: leisure";
+
+/*create dichotomous indicators of activity & childcare groupings*/
+foreach x in m1 cw nm le {;
+    gen act`x'=0;
+        replace act`x'=1 if ``x'codes';
+        label variable act`x' "``x'label' (yes/no)";
+    };
+
+gen acttype=1 if actmw==1;
+    replace acttype=2 if actcw==1;
+    replace acttype=3 if actnm==1;
+    replace acttype=4 if actle==1;
+
+    label define acttypel 1 "market work" 2 "care work" 3 "nonmarket work" 4 "leisure";
+    label values acttype acttypel;
+
+#delimit cr
 
 save wellbeing.dta, replace
 
