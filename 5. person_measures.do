@@ -264,16 +264,16 @@ local lecodes
 local lelabel "A&H: leisure";
 
 /*create dichotomous indicators of activity & childcare groupings*/
-foreach x in m1 cw nm le {;
+foreach x in mw cw nm le {;
     gen act`x'=0;
         replace act`x'=1 if ``x'codes';
         label variable act`x' "``x'label' (yes/no)";
     };
 
-gen acttype=1 if actmw==1;
-    replace acttype=2 if actcw==1;
-    replace acttype=3 if actnm==1;
-    replace acttype=4 if actle==1;
+gen 	acttype=1 if actmw==1;
+replace acttype=2 if actcw==1;
+replace acttype=3 if actnm==1;
+replace acttype=4 if actle==1;
 
     label define acttypel 1 "market work" 2 "care work" 3 "nonmarket work" 4 "leisure";
     label values acttype acttypel;
