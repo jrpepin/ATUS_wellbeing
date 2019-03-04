@@ -200,7 +200,7 @@ gen weekend=0;
 
 
 /*generally I use white black hisp other in models*/
-
+#delimit;
 gen hisp=1 if hispan>=200;
 	replace hisp=0 if hispan==100;
 
@@ -217,7 +217,12 @@ gen 		kidu2 = 0
 replace 	kidu2 = 1 if ageychild <= 2
 
 /* Number of kids */
-gen hh_numkids 	= numkids
+cap drop 	numkids
+gen  		numkids = hh_numkids
+replace		numkids = 3 if numkids >= 3
+
+	label define numkidslbl 0 "0" 1 "1" 2 "2" 3 "3+"
+	label values numkids numkidslbl
 
 *********************************************************************************************************
 /*create activity categories*/
