@@ -41,40 +41,43 @@ quietly infix                     ///
   byte    hh_numownkids  111-112  ///
   byte    kidund1        113-114  ///
   byte    kid1to2        115-116  ///
-  int     age_sp         117-119  ///
-  byte    sex_sp         120-121  ///
-  int     race_sp        122-125  ///
-  int     hispan_sp      126-129  ///
-  int     educ_sp        130-132  ///
-  int     educyrs_sp     133-135  ///
-  byte    empstat_sp     136-137  ///
-  int     uhrsworkt_sp   138-141  ///
-  byte    actline        142-143  ///
-  long    activity       144-149  ///
-  int     where          150-153  ///
-  int     duration       154-157  ///
-  str     start          158-165  ///
-  str     stop           166-173  ///
-  byte    scpain         174-175  ///
-  byte    schappy        176-177  ///
-  byte    scsad          178-179  ///
-  byte    sctired        180-181  ///
-  byte    scstress       182-183  ///
-  byte    interact       184-185  ///
-  byte    meaning        186-187  ///
-  byte    osad           188-189  ///
-  byte    ohappy         190-191  ///
-  byte    opain          192-193  ///
-  byte    otired         194-195  ///
-  byte    ostress        196-197  ///
-  byte    wbelig         198-198  ///
-  double  awbwt          199-213  ///
-  using `"atus_00028.dat"'
+  double  wbwt           117-131  ///
+  int     age_sp         132-134  ///
+  byte    sex_sp         135-136  ///
+  int     race_sp        137-140  ///
+  int     hispan_sp      141-144  ///
+  int     educ_sp        145-147  ///
+  int     educyrs_sp     148-150  ///
+  byte    empstat_sp     151-152  ///
+  int     uhrsworkt_sp   153-156  ///
+  byte    actline        157-158  ///
+  long    activity       159-164  ///
+  int     where          165-168  ///
+  int     duration       169-172  ///
+  str     start          173-180  ///
+  str     stop           181-188  ///
+  byte    scpain         189-190  ///
+  byte    schappy        191-192  ///
+  byte    scsad          193-194  ///
+  byte    sctired        195-196  ///
+  byte    scstress       197-198  ///
+  byte    interact       199-200  ///
+  byte    meaning        201-202  ///
+  byte    osad           203-204  ///
+  byte    ohappy         205-206  ///
+  byte    opain          207-208  ///
+  byte    otired         209-210  ///
+  byte    ostress        211-212  ///
+  byte    wbelig         213-213  ///
+  double  awbwt          214-228  ///
+  using `"atus_00029.dat"'
 
+replace wbwt          = wbwt          / 1000000
 replace awbwt         = awbwt         / 1000000
 
 format caseid        %14.0g
 format wt06          %17.0g
+format wbwt          %15.6f
 format awbwt         %15.6f
 
 label var rectype       `"Record Type"'
@@ -111,6 +114,7 @@ label var spusualhrs    `"Usual work hours (spouse or partner)"'
 label var hh_numownkids `"Number of own children under 18 in household"'
 label var kidund1       `"Own child under 1 in household"'
 label var kid1to2       `"Own child age 1 to 2 in household"'
+label var wbwt          `"Well-being Module final statistical weight, person-level"'
 label var age_sp        `"Age [of spouse]"'
 label var sex_sp        `"Sex [of spouse]"'
 label var race_sp       `"Race [of spouse]"'
@@ -582,6 +586,9 @@ label define kid1to2_lbl 00 `"No"'
 label define kid1to2_lbl 01 `"Yes"', add
 label define kid1to2_lbl 99 `"NIU (Not in universe)"', add
 label values kid1to2 kid1to2_lbl
+
+label define wbwt_lbl 000000000000000 `"0"'
+label values wbwt wbwt_lbl
 
 label define sex_sp_lbl 01 `"Male"'
 label define sex_sp_lbl 02 `"Female"', add
@@ -1457,7 +1464,5 @@ label values ostress ostress_lbl
 label define wbelig_lbl 0 `"No"'
 label define wbelig_lbl 1 `"Yes"', add
 label values wbelig wbelig_lbl
-
-
 
 save "wellbeing_activity", replace

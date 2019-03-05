@@ -21,8 +21,8 @@ xtdescribe
 We want column percents with Total Ns for men and women (
 want to be able to figure out how many men and women are in each couple type).
 */
-tab wfa sex 				if actline==1, col
-tab wfa sex [aweight=wt06] 	if actline==1, col // Do we use the weights? Which ones?
+tab wfa sex 					if actline==1, col
+tab wfa sex [aweight=wbwt] 		if actline==1, col
 
 // Well-being averages by couple-type
 tabstat sphappy spmeaning spstress sptired spsad if sex ==1, by (wfa)
@@ -73,8 +73,9 @@ ttest spsad if wfa==5, by(sex)
 ttest spsad if wfa==6, by(sex)
 ttest spsad if wfa==7, by(sex)
 
-tabstat sphappy spstress spmeaning sptired spsad if spousepres ==1, by (wfa)
-tabstat sphappy spstress spmeaning sptired spsad if spousepres ==2, by (wfa)
+// By marital status
+tabstat sphappy spstress spmeaning sptired spsad if marr_cohab ==1, by (wfa)
+tabstat sphappy spstress spmeaning sptired spsad if marr_cohab ==2, by (wfa)
 
 
 *********************************************************************************************************
@@ -93,7 +94,7 @@ capture erase "wellbeing_rem.xml"
 
 /// estimate models using xtreg
 foreach var of varlist sphappy spmeaning spstress sptired spsad {
-    xtreg `var' i.wfa##i.sex $demo, i(caseid) robust re
+    xtreg `var' i.wfa##i.sex $demo $diary, i(caseid) robust re
     estimates store `var'_m
     outreg2 using "wellbeing_rem", excel dec(2) addstat("sigma_u",e(sigma_u),"sigma_e",e(sigma_e),"rho",e(rho))
 }
