@@ -81,16 +81,11 @@ tabstat sphappy spstress spmeaning sptired spsad if spousepres ==2, by (wfa)
 /* estimate random effects models */
 *********************************************************************************************************
 // ssc install outreg2
-/* 
-marital status (cohabiting or married), age (in years), number of children (none, one, two, or more), 
-presence of a child under the age of two, race/ethnicity (non-Hispanic White, non-Hispanic black, Hispanic, other), 
-family income (under $25,000; $25,000 to $99,000; $100,000 or more; and missing information on income), 
-whether the respondent was a college graduate, and whether the respondent was enrolled in school. */
-
-/// START HERE -- CHECK RACE VARIABLES AND ADD OTHER IV TO MODEL 
 
 // Create a list of the independent variables
-global ivars "marr_cohab age i.numkids kidu2 black hisp other weekend"
+global demo "marr_cohab age i.numkids kidu2 i.raceth collgrad inschool"
+global diary "year weekend i.acttype i.tod duration i.location"
+
 
 // delete any previous output files
 capture erase "wellbeing_rem.txt"
@@ -98,7 +93,7 @@ capture erase "wellbeing_rem.xml"
 
 /// estimate models using xtreg
 foreach var of varlist sphappy spmeaning spstress sptired spsad {
-    xtreg `var' i.wfa##i.sex $ivars, i(caseid) robust re
+    xtreg `var' i.wfa##i.sex $demo, i(caseid) robust re
     estimates store `var'_m
     outreg2 using "wellbeing_rem", excel dec(2) addstat("sigma_u",e(sigma_u),"sigma_e",e(sigma_e),"rho",e(rho))
 }
