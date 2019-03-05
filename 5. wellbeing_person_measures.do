@@ -211,6 +211,17 @@ gen asian = (race>=130 & race<140 & hispan==100);
 gen mixed_race = (race>=200 & race<600 & hispan==100);
 gen other = (aian==1 | asian==1 | mixed_race==1 /*| hisp==1*/) & (white==0 & black==0 & hisp==0);
 
+#delimit cr
+cap drop 	raceth
+gen			raceth = .
+replace		raceth = 1 if white == 1
+replace		raceth = 2 if black == 1
+replace		raceth = 3 if hisp  == 1
+replace		raceth = 4 if other == 1
+
+label define racethlbl 1 "white" 2 "black" 3 "hispanic" 4 "other"
+label values raceth racethlbl
+
 /* Parent variables */
 cap drop 	kidu2
 gen 		kidu2 = 0
