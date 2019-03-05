@@ -13,7 +13,14 @@ gen atwork=0 if where<9997;
 gen atpublic=0 if where<9997;
 	replace atpublic=1 if where>102 & where<9997; //not at home or work
 
+cap drop 	location;
+gen 		location = .;
+replace		location = 1 if athome 		==1;
+replace		location = 2 if atwork 		==1;
+replace		location = 3 if atpublic 	==1;
 
+label define locationlbl 1 "At home" 2 "At work" 3 "In public";
+label values location locationlbl;
 
 /**********************************************************************************
 basic setup for times
@@ -104,7 +111,7 @@ gen tod=0;
 	replace tod=3 if minstart>=hour14start & minstop<hour17start; //activity starts at or after 2:00 p.m. and ends before 5:00 p.m.
 	replace tod=4 if minstart>=hour17start & minstop<hour21start; //activity starts at or after 5:00 p.m. and ends before 9:00 p.m.
 	replace tod=5 if minstart>=hour21start; //activity starts at or after 9:00 p.m.
-
+	
 tab tod; //activities that span two time blocks need to be handled differently
 
 /*based on assignment to time blocks, assign activity to time of day where majority occurs*/
@@ -152,6 +159,9 @@ gen low=0 if tod==0;
 
 tab tod, gen(tod); //generate dummies 1-5 for time of day variables
 
-
 drop last_act - intod5;
+
+label define todlbl 1 "4 a.m. to 9 a.m." 2 "9 a.m. to 2 p.m." 3 "2 p.m. to 5 p.m." 4 "5 p.m. to 9 p.m." 5 "9 p.m. to 4 a.m.";
+label values tod todlbl;
+
 save tod.dta, replace;
