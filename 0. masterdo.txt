@@ -1,0 +1,7 @@
+set more off
+do "1. wellbeing_master_activity.do"
+do "2. wellbeing_master_who.do"
+do "3. wellbeing_activity_times_locations.do"
+do "4. wellbeing_sample and measures.do"
+do "5. wellbeing_person_measures.do"
+do "6. wellbeing_analyses.do"

@@ -4,6 +4,8 @@ set more off
 
 cd "C:\Users\Joanna\Dropbox\Repositories\ATUS_Wellbeing"
 use wellbeing.dta
+keep if awbwt>0 & awbwt!=.
+bysort caseid (actline): gen actnum=_n
 
 /* Change file path to where the tables should be saved */
 cd "C:\Users\Joanna\Dropbox\Wellbeing\Stata Tables"
@@ -11,7 +13,7 @@ cd "C:\Users\Joanna\Dropbox\Wellbeing\Stata Tables"
 *********************************************************************************************************
 /*Set the data as panel data*/
 *********************************************************************************************************
-xtset caseid actline
+xtset caseid actnum
 xtdescribe
 
 *********************************************************************************************************
@@ -85,7 +87,7 @@ tabstat sphappy spstress spmeaning sptired spsad if marr_cohab ==2, by (wfa)
 
 // Create a list of the independent variables
 global demo "marr_cohab age i.numkids kidu2 i.raceth collgrad inschool"
-global diary "year weekend i.acttype i.tod duration i.location"
+global diary "i.year weekend i.acttype i.tod duration i.location"
 
 
 // delete any previous output files
@@ -94,6 +96,8 @@ capture erase "wellbeing_rem.xml"
 
 /// estimate models using xtreg
 foreach var of varlist sphappy spmeaning spstress sptired spsad {
+    xtreg `var' i.wfa i.sex , i(caseid) robust re
+    xtreg `var' i.wfa##i.sex , i(caseid) robust re
     xtreg `var' i.wfa##i.sex $demo $diary, i(caseid) robust re
     estimates store `var'_m
     outreg2 using "wellbeing_rem", excel dec(2) addstat("sigma_u",e(sigma_u),"sigma_e",e(sigma_e),"rho",e(rho))
