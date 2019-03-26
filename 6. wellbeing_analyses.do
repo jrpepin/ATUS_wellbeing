@@ -5,6 +5,7 @@ set more off
 cd "C:\Users\Joanna\Dropbox\Repositories\ATUS_Wellbeing"
 use wellbeing.dta
 keep if awbwt>0 & awbwt!=.
+keep if sphappy!=. & spmeaning!=. &  spstress!=. &  sptired!=. &  spsad!=.
 bysort caseid (actline): gen actnum=_n
 
 /* Change file path to where the tables should be saved */
@@ -23,8 +24,9 @@ xtdescribe
 We want column percents with Total Ns for men and women (
 want to be able to figure out how many men and women are in each couple type).
 */
-tab wfa sex 					if actline==1, col
-tab wfa sex [aweight=wbwt] 		if actline==1, col
+
+tab wfa sex 					if actnum==1, col
+tab wfa sex [aweight=wbwt] 		if actnum==1, col
 
 // Well-being averages by couple-type
 tabstat sphappy spmeaning spstress sptired spsad if sex ==1, by (wfa)
@@ -91,16 +93,22 @@ global diary "i.year weekend i.acttype i.tod duration i.location"
 
 
 // delete any previous output files
-capture erase "wellbeing_rem.txt"
-capture erase "wellbeing_rem.xml"
+capture erase "wellbeing_rem_m1.txt"
+capture erase "wellbeing_rem_m1.xml"
+capture erase "wellbeing_rem_m2.txt"
+capture erase "wellbeing_rem_m2.xml"
+capture erase "wellbeing_rem_m3.txt"
+capture erase "wellbeing_rem_m3.xml"
 
 /// estimate models using xtreg
 foreach var of varlist sphappy spmeaning spstress sptired spsad {
     xtreg `var' i.wfa i.sex , i(caseid) robust re
+	outreg2 using "wellbeing_rem_m1", excel dec(2) alpha(0.001, 0.01, 0.05) addstat("sigma_u",e(sigma_u),"sigma_e",e(sigma_e),"rho",e(rho))
     xtreg `var' i.wfa##i.sex , i(caseid) robust re
+	outreg2 using "wellbeing_rem_m2", excel dec(2) alpha(0.001, 0.01, 0.05) addstat("sigma_u",e(sigma_u),"sigma_e",e(sigma_e),"rho",e(rho))
     xtreg `var' i.wfa##i.sex $demo $diary, i(caseid) robust re
     estimates store `var'_m
-    outreg2 using "wellbeing_rem", excel dec(2) addstat("sigma_u",e(sigma_u),"sigma_e",e(sigma_e),"rho",e(rho))
+    outreg2 using "wellbeing_rem_m3", excel dec(2) alpha(0.001, 0.01, 0.05) addstat("sigma_u",e(sigma_u),"sigma_e",e(sigma_e),"rho",e(rho))
 }
 
 // Generate predicted means by wfa & sex
