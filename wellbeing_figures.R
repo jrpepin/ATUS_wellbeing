@@ -34,7 +34,7 @@ p1 <- data %>%
   theme(axis.text.x      = element_text(vjust = 0.5, hjust=1, size = 18),
         strip.text.x     = element_text(face = "bold", size = 28),
         axis.title       = element_text(size = 16), 
-        axis.text        = element_text(face = "bold", size = 20), 
+        axis.text        = element_text(face = "bold", size = 28), 
         plot.margin      = unit(c(1,1,1,1),"cm"),
         legend.position  = "none",
         axis.line        = element_line(size = 4, colour = "white"),
@@ -43,7 +43,7 @@ p1 <- data %>%
         panel.grid.major.x = element_blank(),
         panel.border = element_blank()) +
   labs(x = " ", y = "\n", fill = "") +
-  scale_fill_manual(values=c("#6a5281", "#c34f4f")) +
+  scale_fill_manual(values=c("#6a5281", "#cf815b")) +
   scale_y_continuous(limits = c(3, 5), breaks = NULL)
 
 
@@ -59,7 +59,7 @@ p2 <- data %>%
         axis.text.y      = element_blank(),
         strip.text.x     = element_text(face = "bold", size = 28),
         axis.title       = element_text(size = 16), 
-        axis.text        = element_text(face = "bold", size = 20), 
+        axis.text        = element_text(face = "bold", size = 28), 
         plot.margin      = unit(c(1,1,1,1),"cm"),
         legend.position  = "none",
         axis.line        = element_line(size = 4, colour = "white"),
@@ -68,7 +68,7 @@ p2 <- data %>%
         panel.grid.major.x = element_blank(),
         panel.border = element_blank()) +
   labs(x = " ", y = "\n", fill = "") +
-  scale_fill_manual(values=c("#6a5281", "#c34f4f")) +
+  scale_fill_manual(values=c("#6a5281", "#cf815b")) +
   scale_y_continuous(limits = c(1, 3), breaks = NULL)
 
 p3 <- data %>%
@@ -83,6 +83,33 @@ p3 <- data %>%
         axis.text.y      = element_blank(),
         strip.text.x     = element_text(face = "bold", size = 28),
         axis.title       = element_text(size = 16), 
+        axis.text        = element_text(face = "bold", size = 28), 
+        plot.margin      = unit(c(1,1,1,1),"cm"),
+        legend.position  = "none",
+        axis.line        = element_line(size = 4, colour = "white"),
+        panel.spacing=unit(.5, "lines"),
+        panel.grid.major = element_line(colour="grey90", size=9),
+        panel.grid.major.x = element_blank(),
+        panel.border = element_blank()) +
+  labs(x = " ", y = "\n", fill = "") +
+  scale_fill_manual(values=c("#6a5281", "#cf815b")) +
+  scale_y_continuous(limits = c(0, 2), breaks = NULL)
+
+grid.arrange(p1, p2, p3, ncol = 3, widths = c(2.7, .9, 1.4))
+
+
+## Alternate plot
+### Standardized
+p4 <- data %>%
+  ggplot(aes(DOL, Value, fill = Gender, label = round(Value, 1))) +
+  geom_point(size = 9, shape=21, alpha = 0.9) +
+  facet_grid(. ~ Emotion) +
+  coord_flip() +
+  geom_text(check_overlap = TRUE, color = "white") +
+  theme_minimal() +
+  theme(axis.text.x      = element_text(vjust = 0.5, hjust=1, size = 18),
+        strip.text.x     = element_text(face = "bold", size = 28),
+        axis.title       = element_text(size = 16), 
         axis.text        = element_text(face = "bold", size = 20), 
         plot.margin      = unit(c(1,1,1,1),"cm"),
         legend.position  = "none",
@@ -93,12 +120,11 @@ p3 <- data %>%
         panel.border = element_blank()) +
   labs(x = " ", y = "\n", fill = "") +
   scale_fill_manual(values=c("#6a5281", "#c34f4f")) +
-  scale_y_continuous(limits = c(0, 2), breaks = NULL)
-
-grid.arrange(p1, p2, p3, ncol = 3, widths = c(2.5, 1, 1.5))
+  scale_y_continuous(breaks = NULL)
 
 
-## Alternate plot
+
+# Totally different plot
 data %>%
   ggplot(aes(DOL, Value, fill = Gender, label = round(Value, 1))) +
   geom_col(width = 0.8, position = position_dodge(width = 0.9)) +
