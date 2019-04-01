@@ -16,15 +16,15 @@ data$Gender <- ordered(data$Gender,   levels = c(" Women", " Men"))
 
 data$Emotion <- as_factor(data$Emotion)
 levels(data$Emotion)[levels(data$Emotion)=="Happy"]   <- "Happy\n"
-levels(data$Emotion)[levels(data$Emotion)=="Meaning"] <- "Meaning\n"
-levels(data$Emotion)[levels(data$Emotion)=="Fatigue"] <- "Fatigue\n"
-levels(data$Emotion)[levels(data$Emotion)=="Stress"]  <- "Stress\n"
-levels(data$Emotion)[levels(data$Emotion)=="Sadness"] <- "Sadness\n"
+levels(data$Emotion)[levels(data$Emotion)=="Meaning"] <- "Meaningful\n"
+levels(data$Emotion)[levels(data$Emotion)=="Fatigue"] <- "Fatigued\n"
+levels(data$Emotion)[levels(data$Emotion)=="Stress"]  <- "Stressed\n"
+levels(data$Emotion)[levels(data$Emotion)=="Sadness"] <- "Sad\n"
 
-data$Emotion <- ordered(data$Emotion,   levels = c("Happy\n", "Meaning\n", "Fatigue\n", "Stress\n", "Sadness\n"))
+data$Emotion <- ordered(data$Emotion,   levels = c("Happy\n", "Meaningful\n", "Fatigued\n", "Stressed\n", "Sad\n"))
 
 p1 <- data %>%
-  filter(Emotion == "Happy\n" | Emotion == "Meaning\n") %>%
+  filter(Emotion == "Happy\n" | Emotion == "Meaningful\n") %>%
   ggplot(aes(DOL, Value, fill = Gender, label = round(Value, 1))) +
   geom_point(size = 9, shape=21, alpha = 0.9) +
   facet_grid(. ~ Emotion) +
@@ -48,7 +48,7 @@ p1 <- data %>%
 
 
 p2 <- data %>%
-  filter(Emotion == "Fatigue\n") %>%
+  filter(Emotion == "Fatigued\n") %>%
   ggplot(aes(DOL, Value, fill = Gender, label = round(Value, 1))) +
   geom_point(size = 9, shape=21, alpha = 0.9) +
   facet_grid(. ~ Emotion) +
@@ -72,7 +72,7 @@ p2 <- data %>%
   scale_y_continuous(limits = c(1, 3), breaks = NULL)
 
 p3 <- data %>%
-  filter(Emotion == "Stress\n" |Emotion == "Sadness\n") %>%
+  filter(Emotion == "Stressed\n" |Emotion == "Sad\n") %>%
   ggplot(aes(DOL, Value, fill = Gender, label = round(Value, 1))) +
   geom_point(size = 9, shape=21, alpha = 0.9) +
   facet_grid(. ~ Emotion) +
