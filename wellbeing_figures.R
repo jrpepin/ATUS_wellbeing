@@ -23,13 +23,16 @@ levels(data$Emotion)[levels(data$Emotion)=="Sadness"] <- "Sad\n"
 
 data$Emotion <- ordered(data$Emotion,   levels = c("Happy\n", "Meaningful\n", "Fatigued\n", "Stressed\n", "Sad\n"))
 
+## Figures
+setwd("C:/Users/Joanna/Dropbox/Wellbeing/Figures")
+
 p1 <- data %>%
   filter(Emotion == "Happy\n" | Emotion == "Meaningful\n") %>%
   ggplot(aes(DOL, Value, fill = Gender, label = round(Value, 1))) +
-  geom_point(size = 9, shape=21, alpha = 0.9) +
+  geom_point(size = 14, shape=21, alpha = 0.9) +
   facet_grid(. ~ Emotion) +
   coord_flip() +
-  geom_text(check_overlap = TRUE, color = "white") +
+  geom_text(check_overlap = TRUE, color = "white", size = 7) +
   theme_minimal() +
   theme(axis.text.x      = element_text(vjust = 0.5, hjust=1, size = 18),
         strip.text.x     = element_text(face = "bold", size = 28),
@@ -39,21 +42,21 @@ p1 <- data %>%
         legend.position  = "none",
         axis.line        = element_line(size = 4, colour = "white"),
         panel.spacing=unit(.5, "lines"),
-        panel.grid.major = element_line(colour="grey90", size=9),
+        panel.grid.major = element_line(colour="grey90", size=14),
         panel.grid.major.x = element_blank(),
         panel.border = element_blank()) +
   labs(x = " ", y = "\n", fill = "") +
   scale_fill_manual(values=c("#6a5281", "#cf815b")) +
-  scale_y_continuous(limits = c(3, 5), breaks = NULL)
+  scale_y_continuous(limits = c(3, 5), breaks = NULL) 
 
 
 p2 <- data %>%
   filter(Emotion == "Fatigued\n") %>%
   ggplot(aes(DOL, Value, fill = Gender, label = round(Value, 1))) +
-  geom_point(size = 9, shape=21, alpha = 0.9) +
+  geom_point(size = 14, shape=21, alpha = 0.9) +
   facet_grid(. ~ Emotion) +
   coord_flip() +
-  geom_text(check_overlap = TRUE, color = "white") +
+  geom_text(check_overlap = TRUE, color = "white", size = 7) +
   theme_minimal() +
   theme(axis.text.x      = element_text(vjust = 0.5, hjust=1, size = 18),
         axis.text.y      = element_blank(),
@@ -64,7 +67,7 @@ p2 <- data %>%
         legend.position  = "none",
         axis.line        = element_line(size = 4, colour = "white"),
         panel.spacing=unit(.5, "lines"),
-        panel.grid.major = element_line(colour="grey90", size=9),
+        panel.grid.major = element_line(colour="grey90", size=14),
         panel.grid.major.x = element_blank(),
         panel.border = element_blank()) +
   labs(x = " ", y = "\n", fill = "") +
@@ -74,10 +77,10 @@ p2 <- data %>%
 p3 <- data %>%
   filter(Emotion == "Stressed\n" |Emotion == "Sad\n") %>%
   ggplot(aes(DOL, Value, fill = Gender, label = round(Value, 1))) +
-  geom_point(size = 9, shape=21, alpha = 0.9) +
+  geom_point(size = 14, shape=21, alpha = 0.9) +
   facet_grid(. ~ Emotion) +
   coord_flip() +
-  geom_text(check_overlap = TRUE, color = "white") +
+  geom_text(check_overlap = TRUE, color = "white", size = 7) +
   theme_minimal() +
   theme(axis.text.x      = element_text(vjust = 0.5, hjust=1, size = 18),
         axis.text.y      = element_blank(),
@@ -88,14 +91,18 @@ p3 <- data %>%
         legend.position  = "none",
         axis.line        = element_line(size = 4, colour = "white"),
         panel.spacing=unit(.5, "lines"),
-        panel.grid.major = element_line(colour="grey90", size=9),
+        panel.grid.major = element_line(colour="grey90", size=14),
         panel.grid.major.x = element_blank(),
         panel.border = element_blank()) +
   labs(x = " ", y = "\n", fill = "") +
   scale_fill_manual(values=c("#6a5281", "#cf815b")) +
   scale_y_continuous(limits = c(0, 2), breaks = NULL)
 
-grid.arrange(p1, p2, p3, ncol = 3, widths = c(2.7, .9, 1.4))
+poster <- grid.arrange(p1, p2, p3, ncol = 3, widths = c(2.4, .9, 1.5))
+
+#save
+g <- arrangeGrob(p1, p2, p3, ncol = 3, widths = c(2.4, .9, 1.5)) #generates g
+ggsave(file="poster.png", g, width = 61, height = 28, units = "cm", dpi = 300) #saves g
 
 
 ## Alternate plot
