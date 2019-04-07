@@ -149,10 +149,12 @@ keep if ok 	==1
 count if actline ==1 //  7,383 people
 count if spwell ==1  // 13,034 activities
 
+compress
 save wellbeing_sample.dta, replace
 
 merge 1:1 caseid actline using tod
 
 keep if _merge==3
 
+compress
 save,replace

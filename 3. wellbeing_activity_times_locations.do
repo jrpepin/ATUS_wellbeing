@@ -69,6 +69,7 @@ assert hour04stop==hour04start+59;
 assert hour04stop==300;
 assert hour23stop==hour23start+59;
 assert hour27stop==1680;
+compress;
 save setup_times.dta, replace;
 
 
@@ -164,4 +165,5 @@ drop last_act - intod5;
 label define todlbl 1 "4 a.m. to 9 a.m." 2 "9 a.m. to 2 p.m." 3 "2 p.m. to 5 p.m." 4 "5 p.m. to 9 p.m." 5 "9 p.m. to 4 a.m.";
 label values tod todlbl;
 
+compress;
 save tod.dta, replace;

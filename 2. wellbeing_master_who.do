@@ -1,7 +1,7 @@
 * NOTE: You need to set the Stata working directory to the path
 * where the data file is located.
 
-cd "C:\Users\Joanna\Dropbox\Repositories\ATUS_Wellbeing"
+*cd "C:\Users\Joanna\Dropbox\Repositories\ATUS_Wellbeing"
 
 set more off
 
@@ -898,4 +898,5 @@ label define sexw_lbl 02 `"Female"', add
 label define sexw_lbl 99 `"NIU (Not in universe)"', add
 label values sexw sexw_lbl
 
+compress
 save "wellbeing_who", replace

@@ -1465,4 +1465,5 @@ label define wbelig_lbl 0 `"No"'
 label define wbelig_lbl 1 `"Yes"', add
 label values wbelig wbelig_lbl
 
+compress
 save "wellbeing_activity", replace

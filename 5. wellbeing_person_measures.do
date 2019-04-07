@@ -297,5 +297,6 @@ replace acttype=4 if actle==1;
 
 #delimit cr
 
+compress
 save wellbeing.dta, replace
 
