@@ -2,14 +2,14 @@ clear
 set more off
 #delimit cr
 
-cd "C:\Users\Joanna\Dropbox\Repositories\ATUS_Wellbeing"
+cd "C:\Users\jpepin\Dropbox\Repositories\ATUS_Wellbeing"
 use wellbeing.dta
 keep if awbwt>0 & awbwt!=.
 keep if sphappy!=. & spmeaning!=. &  spstress!=. &  sptired!=. &  spsad!=.
 bysort caseid (actline): gen actnum=_n
 
 /* Change file path to where the tables should be saved */
-cd "C:\Users\Joanna\Dropbox\Wellbeing\Stata Tables"
+cd "C:\Users\jpepin\Dropbox\Wellbeing\Stata Tables"
 
 *********************************************************************************************************
 /*Set the data as panel data*/
@@ -32,50 +32,16 @@ tab wfa sex [aweight=wbwt] 		if actnum==1, col
 tabstat sphappy spmeaning spstress sptired spsad if sex ==1, by (wfa)
 tabstat sphappy spmeaning spstress sptired spsad if sex ==2, by (wfa)
 
-ttest sphappy if wfa!=., by(sex)
-ttest sphappy if wfa==1, by(sex)
-ttest sphappy if wfa==2, by(sex)
-ttest sphappy if wfa==3, by(sex)
-ttest sphappy if wfa==4, by(sex)
-ttest sphappy if wfa==5, by(sex)
-ttest sphappy if wfa==6, by(sex)
-ttest sphappy if wfa==7, by(sex)
+// ttests
+foreach var in sphappy spmeaning spstress sptired spsad {
+	ttest `var' if wfa!=., by(sex)
+}
 
-ttest spmeaning if wfa!=., by(sex)
-ttest spmeaning if wfa==1, by(sex)
-ttest spmeaning if wfa==2, by(sex)
-ttest spmeaning if wfa==3, by(sex)
-ttest spmeaning if wfa==4, by(sex)
-ttest spmeaning if wfa==5, by(sex)
-ttest spmeaning if wfa==6, by(sex)
-ttest spmeaning if wfa==7, by(sex)
-
-ttest spstress if wfa!=., by(sex)
-ttest spstress if wfa==1, by(sex)
-ttest spstress if wfa==2, by(sex)
-ttest spstress if wfa==3, by(sex)
-ttest spstress if wfa==4, by(sex)
-ttest spstress if wfa==5, by(sex)
-ttest spstress if wfa==6, by(sex)
-ttest spstress if wfa==7, by(sex)
-
-ttest sptired if wfa!=., by(sex)
-ttest sptired if wfa==1, by(sex)
-ttest sptired if wfa==2, by(sex)
-ttest sptired if wfa==3, by(sex)
-ttest sptired if wfa==4, by(sex)
-ttest sptired if wfa==5, by(sex)
-ttest sptired if wfa==6, by(sex)
-ttest sptired if wfa==7, by(sex)
-
-ttest spsad if wfa!=., by(sex)
-ttest spsad if wfa==1, by(sex)
-ttest spsad if wfa==2, by(sex)
-ttest spsad if wfa==3, by(sex)
-ttest spsad if wfa==4, by(sex)
-ttest spsad if wfa==5, by(sex)
-ttest spsad if wfa==6, by(sex)
-ttest spsad if wfa==7, by(sex)
+foreach var in sphappy spmeaning spstress sptired spsad {
+	forvalues i = 1/7{
+		ttest `var' if wfa==`i', by(sex)
+}
+}
 
 // By marital status
 tabstat sphappy spstress spmeaning sptired spsad if marr_cohab ==1, by (wfa)
@@ -112,24 +78,11 @@ foreach var of varlist sphappy spmeaning spstress sptired spsad {
 }
 
 // Generate predicted means by wfa & sex
-estimates restore sphappy_m
-margins i.wfa#i.sex, post
-est store happy_pm
+foreach var in sphappy_m spmeaning_m spstress_m sptired_m spsad_m {
+	estimates restore `var'
+	margins i.wfa#i.sex, post
+	est store pm_`var'
+}
 
-estimates restore spmeaning_m
-margins i.wfa#i.sex, post
-est store meaning_pm
-
-estimates restore spstress_m
-margins i.wfa#i.sex, post
-est store stress_pm
-
-estimates restore sptired_m
-margins i.wfa#i.sex, post
-est store tired_pm
-
-estimates restore spsad_m
-margins i.wfa#i.sex, post
-est store sad_pm
-
-esttab happy_pm meaning_pm stress_pm tired_pm sad_pm using "predictedmeans.csv",  replace label mtitles not nostar noobs
+esttab pm_sphappy_m pm_spmeaning_m pm_spstress_m pm_sptired_m pm_spsad_m using "predictedmeans.csv",  ///
+replace label mtitles not nostar noobs
